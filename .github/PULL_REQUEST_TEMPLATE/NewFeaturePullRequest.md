@@ -1,5 +1,5 @@
-# Related Issue
-- Issue
+# Related Feature
+- Feature
 
 # Changes
 - Change 1
