@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/questionAttempted"
+        android:id="@+id/QUESTIONATTEMPTED"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Number of Questions"
@@ -18,7 +18,7 @@
         android:textSize="20sp"
         android:textColor="@color/black" />
     <TextView
-        android:id="@+id/question"
+        android:id="@+id/QUESTION"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -27,16 +27,16 @@
         android:layout_marginTop="30dp"
         android:textSize="25sp"
         android:textColor="@color/black"
-        android:layout_below="@id/questionAttempted"
+        android:layout_below="@id/QUESTIONATTEMPTED"
         />
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_below="@+id/question"
+    android:layout_below="@+id/QUESTION"
     android:orientation="vertical"
     >
     <Button
-        android:id="@+id/option1"
+        android:id="@+id/OPTION1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="option1"
@@ -45,7 +45,7 @@
         android:textAllCaps="false"
         />
     <Button
-        android:id="@+id/option2"
+        android:id="@+id/OPTION2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="option2"
@@ -54,7 +54,7 @@
         android:textAllCaps="false"
         />
     <Button
-        android:id="@+id/option3"
+        android:id="@+id/OPTION3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="option3"
