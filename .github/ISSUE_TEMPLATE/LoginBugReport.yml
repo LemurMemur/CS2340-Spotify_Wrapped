@@ -1,0 +1,37 @@
+name: Login Error
+description: Report a bug with the log in system
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill out the sections below to help everyone identify and fix the bug
+  - type: dropdown
+    id: issueType
+    attributes:
+      label: "What type of issue is this?"
+      options:
+        - "Cannot log in"
+        - "Account data is not saved"
+        - "Other"
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe your issue in more detail
+      placeholder: When I enter my username and password...
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Put here any screenshots or videos (optional)
+  - type: dropdown
+    id: assign
+    attributes:
+      label: "Would you like to work on this issue?"
+      options:
+        - "Yes"
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting this issue! We will get back to you as soon as possible.
