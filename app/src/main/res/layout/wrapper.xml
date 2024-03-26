@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:src="@drawable/setting"
-        android:background="transparent"
+        android:background="#00000000"
         android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"/>
     <ImageButton
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/setting"
         android:src="@drawable/profile"
-        android:background="transparent"
+        android:background="#00000000"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="-50dp"/>
 
