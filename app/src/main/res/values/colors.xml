@@ -2,4 +2,21 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="violetBlue">#4100F4</color>
+    <color name="violetBlue_dark">#190958</color>
+    <color name="skyBlue">#AFD5E4</color>
+    <color name="skyBlue_light">#DEEEF4</color>
+    <color name="orangeRed">#F27171</color>
+    <color name="yellowGreen">#D3F271</color>
+    <color name="skyPink">#FAD2DA</color>
+
+
+
+
+
+
+
+
+
+
 </resources>

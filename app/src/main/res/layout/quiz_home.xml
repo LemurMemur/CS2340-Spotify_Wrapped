@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/violetBlue">
+    <View
+        android:id="@+id/centerGuide2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true"/>
+    <ImageButton
+        android:id="@+id/home_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/home"
+        android:background=""
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true" />
+    <ImageView
+        android:id="@+id/gameIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@id/centerGuide2"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/controller"
+        android:rotation="-15"/>
+
+    <TextView
+        android:id="@+id/TITLE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="70dp"
+        android:layout_toRightOf="@id/centerGuide2"
+        android:fontFamily="@font/montserrat_bold"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="Mini\nGame"
+        android:textColor="@color/orangeRed"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/game_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/gameIcon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-40dp"
+        android:text="Guess the Song"
+        android:textSize="23dp"
+        android:textColor="@color/yellowGreen"
+        android:fontFamily="@font/montserrat_bold"/>
+
+    <Button
+        android:id="@+id/start_btn"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_alignBottom="@id/centerGuide2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:text="Game Start"
+        android:textSize="27dp"
+        android:backgroundTint="@color/skyBlue"
+        android:textColor="@color/black"
+        android:fontFamily="@font/montserrat_bold"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/start_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-22dp"
+        android:text="Highest Score:"
+        android:textSize="15dp"
+        android:textColor="@color/white"/>
+
+</RelativeLayout>

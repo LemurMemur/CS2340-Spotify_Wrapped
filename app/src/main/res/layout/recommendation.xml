@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/violetBlue">
+    <View
+        android:id="@+id/centerGuide2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true"/>
+    <ImageButton
+        android:id="@+id/home_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/home"
+        android:background=""
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true" />
+
+
+    <TextView
+        android:id="@+id/recom_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="70dp"
+        android:layout_toLeftOf="@id/centerGuide2"
+        android:fontFamily="@font/montserrat_bold"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:text="Song\nfor\nyou"
+        android:textColor="@color/orangeRed"
+        android:textSize="36dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/gameIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="100dp"
+        android:layout_toRightOf="@id/centerGuide2"
+        android:src="@drawable/music_note"
+        android:rotation="30"/>
+    <TextView
+        android:id="@+id/category_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recom_title"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:text="Song                                            Artist"
+        android:textColor="@color/yellowGreen"
+        android:fontFamily="@font/montserrat_bold"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/category_title"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/SONG1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="option1"
+            android:layout_margin="10dp"
+            android:padding="4dp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/skyBlue_light"
+            android:textColor="@color/skyBlue_light"
+            android:fontFamily="@font/montserrat_bold"
+
+            />
+        <TextView
+            android:id="@+id/SONG2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="option2"
+            android:layout_margin="10dp"
+            android:padding="4dp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/skyBlue_light"
+            android:textColor="@color/skyBlue_light"
+
+            android:fontFamily="@font/montserrat_bold"
+            />
+        <TextView
+            android:id="@+id/SONG3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="option2"
+            android:layout_margin="10dp"
+            android:padding="4dp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/skyBlue_light"
+            android:textColor="@color/skyBlue_light"
+            android:fontFamily="@font/montserrat_bold"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/new_recomm"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:text="Get new recommendations"
+        android:textSize="15dp"
+        android:backgroundTint="@color/skyBlue"
+        android:textColor="@color/black"
+        android:fontFamily="@font/montserrat_bold" />
+
+
+</RelativeLayout>
