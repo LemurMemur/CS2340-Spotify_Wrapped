@@ -16,6 +16,7 @@
         android:layout_height="154dp"
         android:layout_centerHorizontal="true"
         android:layout_alignBottom="@id/centerGuide2"
+        android:layout_marginBottom="20dp"
         android:rotation="15"
         android:src="@drawable/music" />
 
@@ -23,14 +24,40 @@
         android:id="@+id/appName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/centerGuide2"
-        android:textAlignment="center"
+        android:layout_below="@+id/appIcon"
         android:layout_centerHorizontal="true"
+
+        android:layout_marginTop="-30dp"
+
         android:fontFamily="@font/montserrat_bold"
         android:text="iWrapper"
+        android:textAlignment="center"
         android:textColor="@color/orangeRed"
-        android:textSize="40dp"
+        android:textSize="50dp"
         android:textStyle="bold" />
-  
+  <Button
+      android:id="@+id/login_btn"
+      android:text="Login"
+      android:textSize="20dp"
+      android:fontFamily="@font/montserrat_bold"
+      android:textColor="@color/black"
+      android:backgroundTint="@color/orangeRed"
+      android:layout_width="180dp"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/appName"
+      android:layout_centerHorizontal="true"
+      android:layout_marginTop="70dp"/>
+    <Button
+        android:id="@+id/signUp_btn"
+        android:text="SignUp"
+        android:textSize="20dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/orangeRed"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
 
 </RelativeLayout>

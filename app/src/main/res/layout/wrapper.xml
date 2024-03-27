@@ -195,4 +195,31 @@
         android:layout_alignLeft="@+id/centerGuide1"
         android:layout_marginLeft="20dp"
         />
+    <Button
+        android:id="@+id/miniGame_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/minuteListened"
+        android:layout_marginLeft="20dp"
+        android:text="Mini Game"
+        android:backgroundTint="@color/skyBlue"
+        android:textColor="@color/black"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="15dp"
+        android:layout_marginTop="20dp"
+        />
+    <Button
+        android:id="@+id/recom_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topGenre"
+        android:layout_alignLeft="@id/centerGuide1"
+
+        android:text="Recommandation"
+        android:backgroundTint="@color/skyBlue"
+        android:textColor="@color/black"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="13dp"
+        android:layout_marginTop="20dp"
+        />
 </RelativeLayout>
