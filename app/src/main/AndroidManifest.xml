@@ -13,6 +13,17 @@
         android:theme="@style/Theme.CS2340Spotify_Wrapped"
         tools:targetApi="31">
         <activity
+            android:name=".Wrapper"
+            android:exported="false" />
+        <activity
+            android:name=".UserRegistration"
+            android:exported="false" />
+        <activity
+            android:name=".UserLogin"
+            android:exported="false"
+            android:label="@string/title_activity_user_login"
+            android:theme="@style/Theme.CS2340Spotify_Wrapped" />
+        <activity
             android:name=".UserRegistration"
             android:exported="false" />
         <activity

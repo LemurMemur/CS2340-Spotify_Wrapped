@@ -26,6 +26,8 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static JSONObject accountInfo;
+
     public static final String CLIENT_ID = "cd9bb99c695247f79fc42a18a2612c24";
     public static final String REDIRECT_URI = "iWrapper://auth";
 
@@ -143,6 +145,8 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     final JSONObject jsonObject = new JSONObject(response.body().string());
+                    accountInfo = jsonObject;
+                    System.out.println(accountInfo);
                     setTextAsync(jsonObject.toString(3), profileTextView);
                 } catch (JSONException e) {
                     Log.d("JSON", "Failed to parse data: " + e);

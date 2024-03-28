@@ -148,42 +148,42 @@
             android:textSize="25dp"/>
     </LinearLayout>
 
-<TextView
-    android:id="@+id/minuteListened_text"
-    android:text="My Minutes Listened"
-    android:fontFamily="@font/montserrat_bold"
-    android:textSize="25dp"
-    android:textColor="@color/white"
-    android:layout_width="150dp"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
-    android:layout_below="@id/topSong_list"
-    android:layout_marginTop="15dp"
-    android:layout_marginLeft="20dp"/>
-<TextView
-    android:id="@+id/minuteListened"
-    android:text="999,999"
-    android:textColor="@color/skyPink"
-    android:textSize="25dp"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/minuteListened_text"
-    android:layout_alignParentLeft="true"
-    android:layout_marginLeft="20dp"
-    />
-<TextView
-    android:id="@+id/topGenre_text"
-    android:text="Top \nGenre"
-    android:textSize="25dp"
-    android:fontFamily="@font/montserrat_bold"
-    android:textColor="@color/white"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@id/topSong_list"
-    android:layout_alignLeft="@+id/centerGuide1"
-    android:layout_marginLeft="20dp"
-    android:layout_marginTop="15dp"
-    />
+    <TextView
+        android:id="@+id/minuteListened_text"
+        android:text="My Minutes Listened"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="25dp"
+        android:textColor="@color/white"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/topSong_list"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"/>
+    <TextView
+        android:id="@+id/minuteListened"
+        android:text="999,999"
+        android:textColor="@color/skyPink"
+        android:textSize="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/minuteListened_text"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        />
+    <TextView
+        android:id="@+id/topGenre_text"
+        android:text="Top \nGenre"
+        android:textSize="25dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/topSong_list"
+        android:layout_alignLeft="@+id/centerGuide1"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        />
     <TextView
         android:id="@+id/topGenre"
         android:text="genre"
