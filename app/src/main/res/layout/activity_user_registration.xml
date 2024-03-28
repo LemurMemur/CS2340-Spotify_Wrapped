@@ -54,13 +54,35 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/userID"
         android:layout_marginTop="20dp"
-        android:text="PW"
+        android:text="Password"
         android:fontFamily="@font/montserrat_medium"
         android:textColor="@color/yellowGreen"
         android:textSize="18dp"
         />
     <EditText
         android:id="@+id/pw"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/confirm_pwText"
+        android:background="@color/white"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="10dp"
+        />
+    <TextView
+        android:id="@+id/confirm_pwText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/confirm_pw"
+        android:layout_marginTop="20dp"
+        android:text="Confirm Password"
+        android:fontFamily="@font/montserrat_medium"
+        android:textColor="@color/yellowGreen"
+        android:textSize="18dp"
+        />
+    <EditText
+        android:id="@+id/confirm_pw"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
@@ -79,7 +101,8 @@
         android:text="Login"
         android:backgroundTint="@color/yellowGreen"
         android:textColor="@color/black"
-        android:fontFamily="@font/montserrat_medium"/>
+        android:fontFamily="@font/montserrat_medium"
+        />
 
 
 
