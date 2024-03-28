@@ -60,7 +60,22 @@
                 android:layout_margin="8dp"
                 android:layout_weight="1"
                 android:text="Get User Profile" />
+            <Button
+                android:id="@+id/logout_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:text="Logout" />
+
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/user_details"
+            android:layout_width="112dp"
+            android:layout_height="46dp"
+            android:text="Hello World!" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
