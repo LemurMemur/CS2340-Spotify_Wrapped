@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.spotify.sdk.android.auth.AuthorizationClient;
 import com.spotify.sdk.android.auth.AuthorizationRequest;
 import com.spotify.sdk.android.auth.AuthorizationResponse;
@@ -25,6 +28,10 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
+    FirebaseAuth auth;
+    Button button;
+    TextView textView;
+    FirebaseUser user;
 
     public static final String CLIENT_ID = "cd9bb99c695247f79fc42a18a2612c24";
     public static final String REDIRECT_URI = "iWrapper://auth";
@@ -42,6 +49,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        auth = FirebaseAuth.getInstance();
+        button = findViewById(R.id.logout_btn);
+        textView = findViewById(R.id.user_details);
+        user = auth.getCurrentUser();
+        if(user == null) {
+            Intent intent = new Intent(getApplicationContext(), UserLogin.class);
+            startActivity(intent);
+            finish();
+        } else {
+            textView.setText(user.getEmail());
+        }
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getApplicationContext(), UserLogin.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         // Initialize the views
         tokenTextView = (TextView) findViewById(R.id.token_text_view);
