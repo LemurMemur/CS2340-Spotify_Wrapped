@@ -35,18 +35,18 @@
         android:textColor="@color/orangeRed"
         android:textSize="50dp"
         android:textStyle="bold" />
-  <Button
-      android:id="@+id/login_btn"
-      android:text="Login"
-      android:textSize="20dp"
-      android:fontFamily="@font/montserrat_bold"
-      android:textColor="@color/black"
-      android:backgroundTint="@color/orangeRed"
-      android:layout_width="180dp"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/appName"
-      android:layout_centerHorizontal="true"
-      android:layout_marginTop="70dp"/>
+    <Button
+        android:id="@+id/login_btn"
+        android:text="Login"
+        android:textSize="20dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/orangeRed"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"/>
     <Button
         android:id="@+id/signUp_btn"
         android:text="SignUp"
