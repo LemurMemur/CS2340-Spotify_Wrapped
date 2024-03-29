@@ -4,17 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/violetBlue">
+
     <View
         android:id="@+id/centerGuide2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_centerInParent="true"/>
+
     <View
         android:id="@+id/horizontal_line"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/skyPink"
         android:layout_marginTop="70dp"/>
+
     <ImageButton
         android:id="@+id/goBack_btn"
         android:layout_width="wrap_content"
@@ -35,18 +38,19 @@
         android:text="User ID"
         android:fontFamily="@font/montserrat_medium"
         android:textColor="@color/yellowGreen"
-        android:textSize="18dp"
-        />
+        android:textSize="18sp" />
+
     <EditText
         android:id="@+id/userID"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/userText"
-        android:background="@color/white"
-        android:layout_marginLeft="100dp"
         android:layout_marginTop="10dp"
-        />
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/white" />
+
     <TextView
         android:id="@+id/pwText"
         android:layout_width="wrap_content"
@@ -57,31 +61,49 @@
         android:text="PW"
         android:fontFamily="@font/montserrat_medium"
         android:textColor="@color/yellowGreen"
-        android:textSize="18dp"
-        />
+        android:textSize="18sp" />
+
     <EditText
         android:id="@+id/pw"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/pwText"
-        android:background="@color/white"
-        android:layout_marginLeft="100dp"
         android:layout_marginTop="10dp"
-        />
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/white"
+        android:inputType="textPassword" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <Button
+        android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="40dp"
         android:layout_below="@id/pw"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
         android:text="Login"
         android:backgroundTint="@color/yellowGreen"
         android:textColor="@color/black"
+        android:fontFamily="@font/montserrat_medium" />
+    <TextView
+        android:id="@+id/register_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/login_btn"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="-151dp"
         android:fontFamily="@font/montserrat_medium"
-        />
-
-
+        android:gravity="center"
+        android:text="Click to Register"
+        android:textColor="@color/yellowGreen"
+        android:textSize="18dp" />
 
 </RelativeLayout>
