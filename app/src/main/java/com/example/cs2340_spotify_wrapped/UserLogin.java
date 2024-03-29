@@ -32,7 +32,9 @@ public class UserLogin extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
         }
     }
 
@@ -50,7 +52,7 @@ public class UserLogin extends AppCompatActivity {
         textview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), UserLogin.class);
+                Intent intent = new Intent(getApplicationContext(), UserRegistration.class);
                 startActivity(intent);
                 finish();
             }
