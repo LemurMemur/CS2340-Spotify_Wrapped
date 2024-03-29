@@ -49,7 +49,8 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:background="@color/white" />
+        android:background="@color/white"
+        android:hint=" abc123@mail.com"/>
 
     <TextView
         android:id="@+id/pwText"
@@ -73,7 +74,8 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:background="@color/white"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:hint=" 6 character minimum"/>
     <ProgressBar
         android:id="@+id/progressBar"
         android:visibility="gone"
@@ -90,7 +92,8 @@
         android:text="Login"
         android:backgroundTint="@color/yellowGreen"
         android:textColor="@color/black"
-        android:fontFamily="@font/montserrat_medium" />
+        android:fontFamily="@font/montserrat_medium"
+        android:layout_marginLeft="16dp"/>
     <TextView
         android:id="@+id/register_text_view"
         android:layout_width="match_parent"

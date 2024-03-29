@@ -40,12 +40,13 @@
     <EditText
         android:id="@+id/userID"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/userText"
         android:background="@color/white"
-        android:layout_marginLeft="100dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="10dp"
+        android:hint=" abc123@mail.com"
         />
     <TextView
         android:id="@+id/pwText"
@@ -62,12 +63,13 @@
     <EditText
         android:id="@+id/pw"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/confirm_pwText"
         android:background="@color/white"
-        android:layout_marginLeft="100dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="10dp"
+        android:hint=" 6 character minimum"
         />
     <TextView
         android:id="@+id/confirm_pwText"
@@ -84,19 +86,20 @@
     <EditText
         android:id="@+id/confirm_pw"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/pwText"
         android:background="@color/white"
-        android:layout_marginLeft="100dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="10dp"
+        android:hint=" 6 character minimum"
         />
     <Button
         android:id="@+id/regbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="100dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="40dp"
         android:layout_below="@id/pw"
         android:text="Login"
