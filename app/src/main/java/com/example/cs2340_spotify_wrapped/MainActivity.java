@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
     public static final int AUTH_TOKEN_REQUEST_CODE = 0;
     public static final int AUTH_CODE_REQUEST_CODE = 1;
 
-    private final OkHttpClient mOkHttpClient = new OkHttpClient();
-    private String mAccessToken, mAccessCode;
+    public static final OkHttpClient mOkHttpClient = new OkHttpClient();
+    public static String mAccessToken, mAccessCode;
     private Call mCall;
 
     private TextView tokenTextView, codeTextView, profileTextView;
