@@ -17,7 +17,7 @@ public class HomePage extends AppCompatActivity {
         Button signupButton = findViewById(R.id.signUp_btn);
 
         //Remove Later
-        //Button spotify_api_button = findViewById(R.id.spotify_api_button);
+        Button spotify_api_button = findViewById(R.id.spotify_api_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,12 +35,12 @@ public class HomePage extends AppCompatActivity {
 
         //Remove Later
 
-        /**
         spotify_api_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                setContentView(R.layout.activity_main);
+                Intent intent = new Intent(HomePage.this, MainActivity.class);
+                startActivity(intent);
             }
         });
-         */
+
     }
 }
