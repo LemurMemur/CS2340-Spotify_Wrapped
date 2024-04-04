@@ -22,6 +22,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class UserRegistration extends AppCompatActivity {
 
     EditText editTextEmail, editTextPassword;
@@ -95,6 +98,9 @@ public class UserRegistration extends AppCompatActivity {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(UserRegistration.this, "Account created.",
                                             Toast.LENGTH_SHORT).show();
+                                    Map<String, String> profile = new HashMap<>();
+                                    profile.put("name", email);
+                                    profile.put("pass", password);
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Toast.makeText(UserRegistration.this, "Authentication failed.",
@@ -102,6 +108,7 @@ public class UserRegistration extends AppCompatActivity {
                                 }
                             }
                         });
+
             }
         });
     }
