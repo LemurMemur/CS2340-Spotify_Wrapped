@@ -76,6 +76,15 @@
             android:layout_width="112dp"
             android:layout_height="46dp"
             android:text="Hello World!" />
+
+        <Button
+            android:id="@+id/changeProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="Edit Profile"
+            app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

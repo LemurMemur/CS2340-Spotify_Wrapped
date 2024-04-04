@@ -44,4 +44,5 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="title_activity_user_login">UserLogin</string>
+    <string name="title_activity_user_edit">UserEdit</string>
 </resources>
