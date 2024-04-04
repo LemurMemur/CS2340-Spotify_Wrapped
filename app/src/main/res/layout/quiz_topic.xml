@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/violetBlue">
+    <ImageButton
+        android:id="@+id/home_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/home"
+        android:background="#00000000"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Pick category"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:textColor="#F27171"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="18dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/category_option"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/home_btn"
+        android:orientation="vertical"
+        >
+        <Button
+            android:id="@+id/OPTION1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pop"
+            android:layout_margin="10dp"
+            android:padding="4dp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/skyBlue_light"
+            android:textColor="@color/violetBlue_dark"
+            />
+        <Button
+            android:id="@+id/OPTION2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hip Hop"
+            android:layout_margin="10dp"
+            android:padding="4dp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/skyBlue_light"
+            android:textColor="@color/violetBlue_dark"
+            />
+        <Button
+            android:id="@+id/OPTION3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rock"
+            android:layout_margin="10dp"
+            android:padding="4dp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/skyBlue_light"
+            android:textColor="@color/violetBlue_dark"
+            />
+        <Button
+            android:id="@+id/OPTION4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="R&amp;B"
+            android:layout_margin="10dp"
+            android:padding="4dp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/skyBlue_light"
+            android:textColor="@color/violetBlue_dark"
+            />
+
+
+    </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Let's Go!"
+        android:layout_below="@+id/category_option"
+        android:layout_margin="10dp"
+        android:padding="4dp"
+        android:backgroundTint="@color/yellowGreen"
+        android:textColor="@color/black"
+        />
+
+
+
+</RelativeLayout>
