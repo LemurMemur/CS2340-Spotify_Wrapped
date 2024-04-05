@@ -143,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
         if (AUTH_TOKEN_REQUEST_CODE == requestCode) {
             mAccessToken = response.getAccessToken();
             setTextAsync(mAccessToken, tokenTextView);
-
         } else if (AUTH_CODE_REQUEST_CODE == requestCode) {
             mAccessCode = response.getCode();
             setTextAsync(mAccessCode, codeTextView);
