@@ -29,6 +29,7 @@ public class Wrapper extends AppCompatActivity {
         setContentView(R.layout.activity_wrapper);
 
         initButtons();
+        JSONObject artists = getJSONobj("https://api.spotify.com/v1/me/top/artists?limit=3");
         initArtistList();
 
     }
@@ -48,7 +49,66 @@ public class Wrapper extends AppCompatActivity {
         });
     }
 
+    private JSONObject getJSONobj(String url) {
+
+        JSONObject ret = null;
+        if (MainActivity.mAccessToken == null) {
+            Toast.makeText(this, "You need to get an access token first!", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+
+        // Create a request to get the user profile
+        final Request request = new Request.Builder()
+                .url(url)
+                .addHeader("Authorization", "Bearer " + MainActivity.mAccessToken)
+                .build();
+
+
+        Call mCall = MainActivity.mOkHttpClient.newCall(request);
+
+        mCall.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.d("HTTP", "Failed to fetch data: " + e);
+                Toast.makeText(Wrapper.this, "Failed to fetch data, watch Logcat for more details",
+                        Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    ret = new JSONObject(response.body().string());
+                } catch (JSONException e) {
+                    Log.d("JSON", "Failed to parse data: " + e);
+                    Toast.makeText(Wrapper.this, "Failed to parse data, watch Logcat for more details",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        return ret;
+    }
     private void initArtistList() {
+    }
+
+    private void fillArtistText(JSONObject jo) {
+        try {
+            JSONArray items = jo.getJSONArray("items");
+            LinearLayout artistList = findViewById(R.id.topArtist_list);
+            for (int i = 0; i < 3 && i < items.length(); i++) {
+                JSONObject item = items.getJSONObject(i);
+                int finalI = i;
+                runOnUiThread(() -> ((TextView)artistList.getChildAt(finalI)).setText(item.toString()));
+                System.out.println(item.toString());
+            }
+
+        } catch (JSONException e) {
+            Log.d("JSON", "Failed to parse data: " + e);
+            Toast.makeText(Wrapper.this, "Failed to parse data, watch Logcat for more details",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void initSongsList() {
         if (MainActivity.mAccessToken == null) {
             Toast.makeText(this, "You need to get an access token first!", Toast.LENGTH_SHORT).show();
             return;
@@ -56,7 +116,7 @@ public class Wrapper extends AppCompatActivity {
 
         // Create a request to get the user profile
         final Request request = new Request.Builder()
-                .url("https://api.spotify.com/v1/me/top/artists")
+                .url("https://api.spotify.com/v1/me/top/tracks?limit=3")
                 .addHeader("Authorization", "Bearer " + MainActivity.mAccessToken)
                 .build();
 
@@ -75,7 +135,7 @@ public class Wrapper extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     final JSONObject jsonObject = new JSONObject(response.body().string());
-                    fillArtistText(jsonObject);
+                    fillSongsText(jsonObject);
                 } catch (JSONException e) {
                     Log.d("JSON", "Failed to parse data: " + e);
                     Toast.makeText(Wrapper.this, "Failed to parse data, watch Logcat for more details",
@@ -85,10 +145,10 @@ public class Wrapper extends AppCompatActivity {
         });
     }
 
-    private void fillArtistText(JSONObject jo) {
+    private void fillSongsText(JSONObject jo) {
         try {
             JSONArray items = jo.getJSONArray("items");
-            LinearLayout artistList = findViewById(R.id.topArtist_list);
+            LinearLayout artistList = findViewById(R.id.topSong_list);
             for (int i = 0; i < 3 && i < items.length(); i++) {
                 JSONObject item = items.getJSONObject(i);
                 int finalI = i;
