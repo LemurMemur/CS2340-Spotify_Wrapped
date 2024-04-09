@@ -31,7 +31,7 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
-    Button button, changeProfile;
+    Button button, changeProfile, changePassword;
     TextView textView;
     FirebaseUser user;
 
@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.logout_btn);
         textView = findViewById(R.id.user_details);
         changeProfile = findViewById(R.id.changeProfile);
+        changePassword = findViewById(R.id.changePassword);
         user = auth.getCurrentUser();
         if(user == null) {
             Intent intent = new Intent(getApplicationContext(), UserLogin.class);
@@ -69,6 +70,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), UserEdit.class);
+                startActivity(intent);
+            }
+        });
+        changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ChangePassword.class);
                 startActivity(intent);
             }
         });
