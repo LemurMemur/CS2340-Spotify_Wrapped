@@ -20,6 +20,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Set;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -38,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String CLIENT_ID = "cd9bb99c695247f79fc42a18a2612c24";
     public static final String REDIRECT_URI = "iWrapper://auth";
 
-    public static final int AUTH_TOKEN_REQUEST_CODE = 0;
-    public static final int AUTH_CODE_REQUEST_CODE = 1;
+    public static final int AUTH_TOKEN_REQUEST_CODE = 1337;
+    public static final int AUTH_CODE_REQUEST_CODE = 1338;
 
     public static final OkHttpClient mOkHttpClient = new OkHttpClient();
     public static String mAccessToken, mAccessCode;
@@ -114,8 +116,22 @@ public class MainActivity extends AppCompatActivity {
      * https://developer.spotify.com/documentation/general/guides/authorization-guide/
      */
     public void getToken() {
-        final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.TOKEN);
-        AuthorizationClient.openLoginActivity(MainActivity.this, AUTH_TOKEN_REQUEST_CODE, request);
+        /*
+        //final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.TOKEN);
+        final AuthorizationRequest request = new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI)
+                .setScopes(new String[]{"user-read-private"})
+                .build();
+        //AuthorizationClient.openLoginActivity(MainActivity.this, AUTH_TOKEN_REQUEST_CODE, request);
+        AuthorizationClient.openLoginInBrowser(this, request);
+*/
+        AuthorizationRequest.Builder builder =
+                new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI);
+
+        builder.setScopes(new String[]{"user-read-private"});
+        builder.setShowDialog(true);
+        AuthorizationRequest request = builder.build();
+        //AuthorizationClient.openLoginActivity(MainActivity.this, AUTH_TOKEN_REQUEST_CODE, request);
+        AuthorizationClient.openLoginInBrowser(this, request);
     }
 
     /**
@@ -139,14 +155,56 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         final AuthorizationResponse response = AuthorizationClient.getResponse(resultCode, data);
 
+        Bundle bd = data.getExtras();
+        if (data.hasExtra("EXTRA_AUTH_RESPONSE")) {
+            System.out.println("has extra");
+            Bundle s = data.getBundleExtra("EXTRA_AUTH_RESPONSE");
+            System.out.println(s);
+        } else {
+            // Do something else
+            System.out.println("no extra");
+        }
+
+        System.out.println("request code is " + requestCode);
         // Check which request code is present (if any)
         if (AUTH_TOKEN_REQUEST_CODE == requestCode) {
+            System.out.println("1");
             mAccessToken = response.getAccessToken();
             setTextAsync(mAccessToken, tokenTextView);
         } else if (AUTH_CODE_REQUEST_CODE == requestCode) {
+            System.out.println("2");
             mAccessCode = response.getCode();
             setTextAsync(mAccessCode, codeTextView);
         }
+    }
+
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        Uri uri = intent.getData();
+        if (uri != null) {
+            AuthorizationResponse response = AuthorizationResponse.fromUri(uri);
+            switch (response.getType()) {
+                // Response was successful and contains auth token
+                case TOKEN:
+                    // Handle successful response
+                    mAccessToken = response.getAccessToken();
+                    setTextAsync(mAccessToken, tokenTextView);
+                    break;
+
+                // Auth flow returned an error
+                case ERROR:
+                    // Handle error response
+                    break;
+
+                // Most likely auth flow was cancelled
+                default:
+                    // Handle other cases
+            }
+        }
+
     }
 
     /**
@@ -179,6 +237,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 try {
+                    Object test = response.body().string();
+                    System.out.println(test);
+
                     final JSONObject jsonObject = new JSONObject(response.body().string());
                     accountInfo = jsonObject;
                     System.out.println(accountInfo);
@@ -187,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("JSON", "Failed to parse data: " + e);
                     Toast.makeText(MainActivity.this, "Failed to parse data, watch Logcat for more details",
                             Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
