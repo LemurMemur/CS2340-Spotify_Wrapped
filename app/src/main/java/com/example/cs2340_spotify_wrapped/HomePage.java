@@ -14,7 +14,7 @@ public class HomePage extends AppCompatActivity {
 
         Button loginButton = findViewById(R.id.login_btn);
         Button signupButton = findViewById(R.id.signUp_btn);
-
+qddadad
         //Remove Later
         Button spotify_api_button = findViewById(R.id.spotify_api_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
