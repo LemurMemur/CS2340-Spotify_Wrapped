@@ -6,3 +6,12 @@ buildscript {
 plugins {
 id 'com.android.application' version '8.2.1' apply false
 }
+plugins {
+    id 'com.diffplug.spotless' version '5.15.0'
+}
+
+spotless {
+    java {
+        googleJavaFormat()
+    }
+}
