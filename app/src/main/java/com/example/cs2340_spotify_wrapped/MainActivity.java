@@ -237,8 +237,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 try {
-                    Object test = response.body().string();
-                    System.out.println(test);
 
                     final JSONObject jsonObject = new JSONObject(response.body().string());
                     accountInfo = jsonObject;
