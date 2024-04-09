@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         AuthorizationRequest.Builder builder =
                 new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI);
 
-        builder.setScopes(new String[]{"user-read-private"});
+        builder.setScopes(new String[]{"user-read-private", "user-read-email", "user-follow-read", "user-top-read"});
         builder.setShowDialog(true);
         AuthorizationRequest request = builder.build();
         //AuthorizationClient.openLoginActivity(MainActivity.this, AUTH_TOKEN_REQUEST_CODE, request);
@@ -141,10 +141,15 @@ public class MainActivity extends AppCompatActivity {
      * https://developer.spotify.com/documentation/general/guides/authorization-guide/
      */
     public void getCode() {
-        final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.CODE);
-        AuthorizationClient.openLoginActivity(MainActivity.this, AUTH_CODE_REQUEST_CODE, request);
+        goToWrapper();
+        //final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.CODE);
+        //AuthorizationClient.openLoginActivity(MainActivity.this, AUTH_CODE_REQUEST_CODE, request);
     }
 
+    private void goToWrapper() {
+        Intent intent = new Intent(getApplicationContext(), Wrapper.class);
+        startActivity(intent);
+    }
 
     /**
      * When the app leaves this activity to momentarily get a token/code, this function

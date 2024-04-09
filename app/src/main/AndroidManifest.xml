@@ -54,6 +54,11 @@
                     android:scheme="iwrapper" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Wrapper"
+            android:exported="false"
+            android:label="wrapper"
+            android:theme="@style/Theme.CS2340Spotify_Wrapped" />
 
         <meta-data
             android:name="preloaded_fonts"
