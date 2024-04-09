@@ -149,28 +149,29 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/minuteListened_text"
-        android:text="My Minutes Listened"
-        android:fontFamily="@font/montserrat_bold"
-        android:textSize="25dp"
-        android:textColor="@color/white"
-        android:layout_width="150dp"
+        android:id="@+id/timeFrame_text"
+        android:layout_width="175dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_below="@id/topSong_list"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="20dp"/>
-    <TextView
-        android:id="@+id/minuteListened"
-        android:text="999,999"
-        android:textColor="@color/skyPink"
-        android:textSize="25dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/minuteListened_text"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"
-        />
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Time Frame"
+        android:textColor="@color/white"
+        android:textSize="25dp" />
+    <Spinner
+        android:id="@+id/timeSelectSpinner"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timeFrame_text"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:spinnerMode="dropdown"
+        android:textColor="@color/white"
+        android:textSize="25dp" />
     <TextView
         android:id="@+id/topGenre_text"
         android:text="Top \nGenre"
@@ -195,19 +196,22 @@
         android:layout_alignLeft="@+id/centerGuide1"
         android:layout_marginLeft="20dp"
         />
+
     <Button
         android:id="@+id/miniGame_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/minuteListened"
+        android:layout_below="@+id/timeSelectSpinner"
         android:layout_marginLeft="20dp"
-        android:text="Mini Game"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="37dp"
+        android:layout_toStartOf="@+id/recom_btn"
         android:backgroundTint="@color/skyBlue"
-        android:textColor="@color/black"
         android:fontFamily="@font/montserrat_bold"
-        android:textSize="15dp"
-        android:layout_marginTop="20dp"
-        />
+        android:text="Mini Game"
+        android:textColor="@color/black"
+        android:textSize="15dp" />
+
     <Button
         android:id="@+id/recom_btn"
         android:layout_width="wrap_content"
