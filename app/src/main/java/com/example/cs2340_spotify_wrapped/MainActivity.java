@@ -191,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
                 case TOKEN:
                     // Handle successful response
                     mAccessToken = response.getAccessToken();
+                    setTextAsync(mAccessToken, tokenTextView);
                     break;
 
                 // Auth flow returned an error
@@ -236,6 +237,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 try {
+                    Object test = response.body().string();
+                    System.out.println(test);
+
                     final JSONObject jsonObject = new JSONObject(response.body().string());
                     accountInfo = jsonObject;
                     System.out.println(accountInfo);
@@ -244,6 +248,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("JSON", "Failed to parse data: " + e);
                     Toast.makeText(MainActivity.this, "Failed to parse data, watch Logcat for more details",
                             Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
