@@ -216,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "You need to get an access token first!", Toast.LENGTH_SHORT).show();
             return;
         }
-
+//Test for pipeline
         // Create a request to get the user profile
         final Request request = new Request.Builder()
                 .url("https://api.spotify.com/v1/me")
