@@ -62,6 +62,22 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
         initList(0);
         initList(1);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
