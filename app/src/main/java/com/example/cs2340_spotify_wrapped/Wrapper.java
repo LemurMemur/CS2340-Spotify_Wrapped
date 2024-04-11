@@ -3,6 +3,7 @@ package com.example.cs2340_spotify_wrapped;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Bitmap;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
@@ -69,8 +70,8 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
             //TODO hide dropdown
             Spinner dd = findViewById(R.id.timeSelectSpinner);
             dd.setVisibility(View.INVISIBLE);
-            //fillText(currWrapperData.artists, 0);
-            //fillText(currWrapperData.tracks, 1);
+            fillText(currWrapperData.artists, 0);
+            fillText(currWrapperData.tracks, 1);
         }
 
         relativeLayout = findViewById(R.id.relativelayout);
@@ -121,12 +122,17 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
         profile.setOnClickListener((v) -> {
             //TODO add redirect to profile page
         });
+        ImageButton settings = findViewById(R.id.setting);
+        settings.setOnClickListener((v) -> {
+            Intent intent = new Intent(getApplicationContext(), Settings.class);
+            startActivity(intent);
+        });
         Button game = findViewById(R.id.miniGame_btn);
-        profile.setOnClickListener((v) -> {
+        game.setOnClickListener((v) -> {
             //TODO add redirect to game page
         });
         Button recommendation = findViewById(R.id.recom_btn);
-        profile.setOnClickListener((v) -> {
+        recommendation.setOnClickListener((v) -> {
             //TODO add redirect to recommendation page
         });
     }
@@ -204,6 +210,7 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                 JSONArray items = jo.getJSONArray("items");
                 switch (mode) {
                     case 0: // artist
+                        currWrapperData.artists = jo;
                         LinearLayout artistList = findViewById(R.id.topArtist_list);
                         HashMap<String, Integer> genreList = new HashMap<>();
                         for (int i = 0; i < 3; i++) {
