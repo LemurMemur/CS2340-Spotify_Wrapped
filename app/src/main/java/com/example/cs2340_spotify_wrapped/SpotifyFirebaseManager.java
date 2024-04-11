@@ -4,9 +4,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import org.json.JSONObject;
 
+import java.util.Date;
+
 public class SpotifyFirebaseManager {
 
-    private DatabaseReference mDatabase;
+    public static DatabaseReference mDatabase;
 
     public SpotifyFirebaseManager() {
         // Initialize Firebase Database
@@ -31,4 +33,11 @@ public class SpotifyFirebaseManager {
             mDatabase.child("tracks").child(trackId).setValue(track.toString());
         }
     }
+
+    /**public static void addData(JSONObject artist, JSONObject track) {
+        Date today = new Date();
+        WrapperData wrapperData = new WrapperData(artist, track, today);
+        mDatabase.child("artist&track").push().setValue(wrapperData);
+    }
+     */
 }

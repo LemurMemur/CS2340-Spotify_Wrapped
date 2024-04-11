@@ -219,7 +219,6 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                 switch (mode) {
                     case 0: // artist
 
-       
                         currWrapperData.artists = jo;
                         LinearLayout artistList = findViewById(R.id.topArtist_list);
                         HashMap<String, Integer> genreList = new HashMap<>();
@@ -231,7 +230,7 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                                 System.out.println(item.getString("name"));
                                 artist = item.getString("name");
                                 artists = items.getJSONObject(i);
-                                artists.put("name", "Artist name");
+                                artists.put("artist", "The artist");
                             }
                             try {
                                 ((TextView) artistList.getChildAt(i)).setText(artist);
