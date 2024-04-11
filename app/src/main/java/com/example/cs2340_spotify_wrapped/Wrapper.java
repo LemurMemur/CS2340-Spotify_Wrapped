@@ -44,7 +44,7 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
     private Spinner timeSelectSpinner;
     private static final String[] paths = {"1 Month", "6 Months", "12 Months"};
     private static int currentTimeFrame = 1;
-    private static WrapperData currWrapperData = new WrapperData();
+    public static WrapperData currWrapperData = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

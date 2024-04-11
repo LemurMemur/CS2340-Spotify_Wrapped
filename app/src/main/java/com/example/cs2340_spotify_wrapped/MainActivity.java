@@ -155,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void goToWrapper() {
+        Wrapper.currWrapperData = null;
         Intent intent = new Intent(getApplicationContext(), Wrapper.class);
         startActivity(intent);
     }

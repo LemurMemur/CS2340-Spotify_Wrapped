@@ -13,9 +13,9 @@ public class WrapperData {
         this.tracks = new JSONObject();
         this.date = new Date();
     }
-    public WrapperData(JSONObject artists, JSONObject tracks) {
+    public WrapperData(JSONObject artists, JSONObject tracks, Date date) {
         this.artists = artists;
         this.tracks = tracks;
-        this.date = new Date();
+        this.date = date;
     }
 }
