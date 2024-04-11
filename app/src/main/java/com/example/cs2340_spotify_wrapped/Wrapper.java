@@ -219,7 +219,6 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                 switch (mode) {
                     case 0: // artist
 
-       
                         currWrapperData.artists = jo;
                         LinearLayout artistList = findViewById(R.id.topArtist_list);
                         HashMap<String, Integer> genreList = new HashMap<>();

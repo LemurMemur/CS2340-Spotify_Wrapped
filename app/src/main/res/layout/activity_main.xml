@@ -69,6 +69,7 @@
                 android:layout_weight="1"
                 android:text="Logout" />
 
+
         </LinearLayout>
 
         <TextView
@@ -92,6 +93,14 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:text="Edit Password"
+            app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/deleteUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="Delete User"
             app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
 
