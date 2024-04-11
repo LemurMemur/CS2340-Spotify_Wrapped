@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                 new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI);
 
         builder.setScopes(new String[]{"user-read-private", "user-read-email", "user-follow-read", "user-top-read"});
-        builder.setShowDialog(true);
+        //builder.setShowDialog(true);
         AuthorizationRequest request = builder.build();
         //AuthorizationClient.openLoginActivity(MainActivity.this, AUTH_TOKEN_REQUEST_CODE, request);
         AuthorizationClient.openLoginInBrowser(this, request);
