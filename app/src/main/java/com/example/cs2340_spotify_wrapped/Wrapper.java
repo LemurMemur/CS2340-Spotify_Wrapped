@@ -2,8 +2,11 @@ package com.example.cs2340_spotify_wrapped;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,15 +14,21 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,17 +49,24 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
             "&time_range=medium_term",
             "&time_range=long_term"
     };
+    private SpotifyFirebaseManager spotifyFirebaseManager;
 
     private Spinner timeSelectSpinner;
     private static final String[] paths = {"1 Month", "6 Months", "12 Months"};
     private static int currentTimeFrame = 1;
     public static WrapperData currWrapperData = null;
 
+    RelativeLayout relativeLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wrapper);
         initButtons();
+        spotifyFirebaseManager = new SpotifyFirebaseManager();
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("messsage");
+//        myRef.setValue("Hello, World");
 
         if (currWrapperData == null) { // if regular opening
             currWrapperData = new WrapperData();
@@ -62,8 +78,50 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
             //TODO hide dropdown
             Spinner dd = findViewById(R.id.timeSelectSpinner);
             dd.setVisibility(View.INVISIBLE);
-            //fillText(currWrapperData.artists, 0);
-            //fillText(currWrapperData.tracks, 1);
+            fillText(currWrapperData.artists, 0);
+            fillText(currWrapperData.tracks, 1);
+        }
+
+        relativeLayout = findViewById(R.id.relativelayout);
+        Button save_wrapper = findViewById(R.id.save_wrapper);
+        save_wrapper.setOnClickListener(v->{
+            saveImage();
+        });
+    }
+
+    private void saveImage() {
+
+        relativeLayout.setDrawingCacheEnabled(true);
+        relativeLayout.buildDrawingCache();
+        relativeLayout.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
+        Bitmap bitmap = relativeLayout.getDrawingCache();
+        
+        save(bitmap);
+
+    }
+
+    private void save(Bitmap bitmap) {
+        String root = Environment.getExternalStorageDirectory().getAbsolutePath();
+        File file = new File(root+"/Download");
+        String fileName = "saved_wrapper.jpg";
+        File myFile = new File(file, fileName);
+
+        if(myFile.exists()){
+            myFile.delete();
+        }
+
+        try{
+            FileOutputStream fileOutputStream = new FileOutputStream(myFile);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
+            fileOutputStream.flush();
+            fileOutputStream.close();
+            Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
+            relativeLayout.setDrawingCacheEnabled(false);
+
+
+        } catch (Exception e){
+            Toast.makeText(this, "Error : "+e.toString(), Toast.LENGTH_SHORT).show();
+
         }
     }
 
@@ -72,12 +130,17 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
         profile.setOnClickListener((v) -> {
             //TODO add redirect to profile page
         });
+        ImageButton settings = findViewById(R.id.setting);
+        settings.setOnClickListener((v) -> {
+            Intent intent = new Intent(getApplicationContext(), Settings.class);
+            startActivity(intent);
+        });
         Button game = findViewById(R.id.miniGame_btn);
-        profile.setOnClickListener((v) -> {
+        game.setOnClickListener((v) -> {
             //TODO add redirect to game page
         });
         Button recommendation = findViewById(R.id.recom_btn);
-        profile.setOnClickListener((v) -> {
+        recommendation.setOnClickListener((v) -> {
             //TODO add redirect to recommendation page
         });
     }
@@ -155,19 +218,24 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                 JSONArray items = jo.getJSONArray("items");
                 switch (mode) {
                     case 0: // artist
+
                         currWrapperData.artists = jo;
                         LinearLayout artistList = findViewById(R.id.topArtist_list);
                         HashMap<String, Integer> genreList = new HashMap<>();
+                        JSONObject artists = new JSONObject();
                         for (int i = 0; i < 3; i++) {
                             String artist = "";
                             if (i < items.length()) {
                                 JSONObject item = items.getJSONObject(i);
                                 System.out.println(item.getString("name"));
                                 artist = item.getString("name");
+                                artists = items.getJSONObject(i);
+                                artists.put("name", "Artist name");
                             }
                             try {
                                 ((TextView) artistList.getChildAt(i)).setText(artist);
                             } catch (Exception e) {}
+                            spotifyFirebaseManager.addArtist(artists);
                         }
 
                         String topGenre = "None";
@@ -194,6 +262,7 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                         break;
                     case 1: // songs
                         currWrapperData.tracks = jo;
+                        JSONObject tracks = new JSONObject();
                         LinearLayout songList = findViewById(R.id.topSong_list);
                         for (int i = 0; i < 3; i++) {
                             String song = "";
@@ -201,11 +270,15 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                                 JSONObject item = items.getJSONObject(i);
                                 System.out.println(item.getString("name"));
                                 song = item.getString("name");
+                                tracks = items.getJSONObject(i);
+                                tracks.put("title", "Track title");
                             }
                             try {
                                 ((TextView) songList.getChildAt(i)).setText(song);
                             } catch (Exception e) {}
+                            spotifyFirebaseManager.addTrack(tracks);
                         }
+
                         break;
 
                     default:

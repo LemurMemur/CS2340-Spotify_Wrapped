@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -25,6 +26,8 @@ public class ChangePassword extends AppCompatActivity {
     private FirebaseAuth authProfile;
     private EditText editCurrPassword, editNewPassword, editConfirmNewPassword;
     private Button authenticate, update;
+
+    private ImageButton goBack_btn;
     private ProgressBar progressBar;
     private String userPwdCurr;
 
@@ -38,6 +41,7 @@ public class ChangePassword extends AppCompatActivity {
         authenticate = findViewById(R.id.authenticate);
         update = findViewById(R.id.update);
         progressBar = findViewById(R.id.progressBar);
+        goBack_btn = findViewById(R.id.goBack_btn);
         editNewPassword.setEnabled(false);
         editConfirmNewPassword.setEnabled(false);
         update.setEnabled(false);
@@ -53,7 +57,18 @@ public class ChangePassword extends AppCompatActivity {
         } else {
             reauthenticate(firebaseUser);
         }
+
+        goBack_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
+
+
+
 
     private void reauthenticate(FirebaseUser firebaseUser) {
         authenticate.setOnClickListener(new View.OnClickListener() {

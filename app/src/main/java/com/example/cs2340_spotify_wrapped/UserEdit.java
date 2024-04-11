@@ -18,6 +18,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -47,6 +48,8 @@ public class UserEdit extends AppCompatActivity {
 
     EditText userId, password,newEmailId;
     Button valid, update;
+
+    ImageButton goBack_btn;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String currentuid;
     DocumentReference documentReference ;
@@ -72,6 +75,7 @@ public class UserEdit extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         progressBar = findViewById(R.id.progressBar);
+        goBack_btn = findViewById(R.id.goBack_btn);
         update.setEnabled(false);
         newEmailId.setEnabled(false);
         oldEmail = firebaseUser.getEmail();
@@ -80,6 +84,14 @@ public class UserEdit extends AppCompatActivity {
         } else {
             reAuthenticate(firebaseUser);
         }
+
+        goBack_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 
