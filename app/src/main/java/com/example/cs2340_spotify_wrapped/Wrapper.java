@@ -63,28 +63,6 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
         initList(1);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private void initButtons() {
