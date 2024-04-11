@@ -21,6 +21,7 @@ import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import okhttp3.Call;
@@ -43,18 +44,27 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
     private Spinner timeSelectSpinner;
     private static final String[] paths = {"1 Month", "6 Months", "12 Months"};
     private static int currentTimeFrame = 1;
-    private static WrapperData currWrapperData;
+    private static WrapperData currWrapperData = new WrapperData();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wrapper);
-
-        currWrapperData = new WrapperData();
         initButtons();
-        initTimeSelect();
-        initList(0);
-        initList(1);
+
+        if (currWrapperData == null) { // if regular opening
+            currWrapperData = new WrapperData();
+            initTimeSelect();
+            initList(0);
+            initList(1);
+        } else {
+            //TODO change time frame text to date of original
+            //TODO hide dropdown
+            Spinner dd = findViewById(R.id.timeSelectSpinner);
+            dd.setVisibility(View.INVISIBLE);
+            //fillText(currWrapperData.artists, 0);
+            //fillText(currWrapperData.tracks, 1);
+        }
     }
 
     private void initButtons() {
@@ -83,6 +93,7 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
         timeSelectSpinner.setAdapter(adapter);
         timeSelectSpinner.setOnItemSelectedListener(this);
         timeSelectSpinner.setSelection(currentTimeFrame);
+        timeSelectSpinner.setVisibility(View.VISIBLE);
     }
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
@@ -90,6 +101,7 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
         // parent.getItemAtPosition(pos).
         if (pos != currentTimeFrame) {
             currentTimeFrame = pos;
+            currWrapperData = null;
             finish();
             startActivity(getIntent());
         }
@@ -126,6 +138,7 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     JSONObject jo = new JSONObject(response.body().string());
+                    JSONArray JAitems = jo.getJSONArray("items");
                     fillText(jo, mode);
                 } catch (JSONException e) {
                     Log.d("JSON", "Failed to parse data: " + e);
@@ -142,7 +155,6 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                 JSONArray items = jo.getJSONArray("items");
                 switch (mode) {
                     case 0: // artist
-                        System.out.println(jo);
                         LinearLayout artistList = findViewById(R.id.topArtist_list);
                         HashMap<String, Integer> genreList = new HashMap<>();
                         for (int i = 0; i < 3; i++) {
@@ -180,7 +192,7 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
 
                         break;
                     case 1: // songs
-                        System.out.println(jo);
+                        currWrapperData.tracks = jo;
                         LinearLayout songList = findViewById(R.id.topSong_list);
                         for (int i = 0; i < 3; i++) {
                             String song = "";
