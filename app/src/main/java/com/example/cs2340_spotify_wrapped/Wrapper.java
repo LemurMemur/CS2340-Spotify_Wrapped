@@ -230,7 +230,7 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                                 System.out.println(item.getString("name"));
                                 artist = item.getString("name");
                                 artists = items.getJSONObject(i);
-                                artists.put("name", "Artist name");
+                                artists.put("artist", "The artist");
                             }
                             try {
                                 ((TextView) artistList.getChildAt(i)).setText(artist);
