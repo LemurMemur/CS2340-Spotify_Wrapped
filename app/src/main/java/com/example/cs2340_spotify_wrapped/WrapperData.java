@@ -8,6 +8,8 @@ public class WrapperData {
     public JSONObject artists;
     public JSONObject tracks;
     public Date date;
+
+    public SpotifyFirebaseManager spotifyFirebaseManager;
     public WrapperData() {
         this.artists = new JSONObject();
         this.tracks = new JSONObject();
