@@ -2,6 +2,7 @@ package com.example.cs2340_spotify_wrapped;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,7 +45,7 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
     private Spinner timeSelectSpinner;
     private static final String[] paths = {"1 Month", "6 Months", "12 Months"};
     private static int currentTimeFrame = 1;
-    private static WrapperData currWrapperData = new WrapperData();
+    public static WrapperData currWrapperData = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,12 +73,17 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
         profile.setOnClickListener((v) -> {
             //TODO add redirect to profile page
         });
+        ImageButton settings = findViewById(R.id.setting);
+        settings.setOnClickListener((v) -> {
+            Intent intent = new Intent(getApplicationContext(), Settings.class);
+            startActivity(intent);
+        });
         Button game = findViewById(R.id.miniGame_btn);
-        profile.setOnClickListener((v) -> {
+        game.setOnClickListener((v) -> {
             //TODO add redirect to game page
         });
         Button recommendation = findViewById(R.id.recom_btn);
-        profile.setOnClickListener((v) -> {
+        recommendation.setOnClickListener((v) -> {
             //TODO add redirect to recommendation page
         });
     }
