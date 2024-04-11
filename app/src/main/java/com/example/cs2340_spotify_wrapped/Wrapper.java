@@ -42,12 +42,14 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
     private Spinner timeSelectSpinner;
     private static final String[] paths = {"1 Month", "6 Months", "12 Months"};
     private static int currentTimeFrame = 0;
+    private static WrapperData currWrapperData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wrapper);
 
+        currWrapperData = new WrapperData();
         initButtons();
         initTimeSelect();
         initList(0);
