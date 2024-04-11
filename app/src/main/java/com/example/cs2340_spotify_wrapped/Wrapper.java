@@ -18,6 +18,7 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -41,7 +42,7 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
 
     private Spinner timeSelectSpinner;
     private static final String[] paths = {"1 Month", "6 Months", "12 Months"};
-    private static int currentTimeFrame = 0;
+    private static int currentTimeFrame = 1;
     private static WrapperData currWrapperData;
 
     @Override
@@ -143,7 +144,7 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                     case 0: // artist
                         System.out.println(jo);
                         LinearLayout artistList = findViewById(R.id.topArtist_list);
-                        HashMap<String, Integer> genreList;
+                        HashMap<String, Integer> genreList = new HashMap<>();
                         for (int i = 0; i < 3; i++) {
                             String artist = "";
                             if (i < items.length()) {
@@ -155,10 +156,28 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                                 ((TextView) artistList.getChildAt(i)).setText(artist);
                             } catch (Exception e) {}
                         }
+
+                        String topGenre = "None";
+                        int topGenreCount = 0;
                         for (int i = 0; i < items.length(); i++) {
                             JSONObject item = items.getJSONObject(i);
-                            System.out.println(item.getString("name"));
+                            JSONArray genres = item.getJSONArray("genres");
+                            for (int g = 0; g < genres.length(); ++g) {
+                                String genre = genres.getString(g);
+                                System.out.println(item.getString("name"));
+                                genreList.put(genre, genreList.getOrDefault(genre, 0) + 1);
+
+                                if (genreList.getOrDefault(genre, -1) > topGenreCount) {
+                                    topGenreCount = genreList.getOrDefault(genre, -1);
+                                    topGenre = genre;
+                                }
+                            }
+
                         }
+
+                        TextView genreText = findViewById(R.id.topGenre);
+                        genreText.setText(topGenre);
+
                         break;
                     case 1: // songs
                         System.out.println(jo);
