@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.net.InetSocketAddress;
-
+//test
 public class ChangePassword extends AppCompatActivity {
     private FirebaseAuth authProfile;
     private EditText editCurrPassword, editNewPassword, editConfirmNewPassword;
