@@ -29,16 +29,18 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         initHistory();
         initHistorySelectionSpinner();
         initButtons();
-
     }
 
-    private void initHistory() {}
+    private void initHistory() {
+        history = new ArrayList<>();
+        history.add(Wrapper.currWrapperData);
+    }
 
     private void initHistorySelectionSpinner() {
-        Spinner timeSelectSpinner = (Spinner)findViewById(R.id.timeSelectSpinner);
+        Spinner historySelectSpinner = (Spinner)findViewById(R.id.historySelectSpinner);
         String[] lst = new String[history.size()];
         for (int i = 0; i < lst.length; ++i) {
-            lst[i] = "" + 1;
+            lst[i] = "" + i;
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 Settings.this,
@@ -46,10 +48,10 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
                 lst
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        timeSelectSpinner.setAdapter(adapter);
-        timeSelectSpinner.setOnItemSelectedListener(this);
-        timeSelectSpinner.setSelection(0);
-        timeSelectSpinner.setVisibility(View.VISIBLE);
+        historySelectSpinner.setAdapter(adapter);
+        historySelectSpinner.setOnItemSelectedListener(this);
+        historySelectSpinner.setSelection(0);
+        historySelectSpinner.setVisibility(View.VISIBLE);
     }
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
@@ -70,7 +72,9 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         });
         Button game = findViewById(R.id.timeTravelButton);
         game.setOnClickListener((v) -> {
-            //TODO add redirect to game page
+            Wrapper.currWrapperData = returnData;
+            Intent intent = new Intent(getApplicationContext(), Wrapper.class);
+            startActivity(intent);
         });
     }
 

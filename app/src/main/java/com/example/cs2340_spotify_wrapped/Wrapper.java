@@ -63,8 +63,8 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
             //TODO hide dropdown
             Spinner dd = findViewById(R.id.timeSelectSpinner);
             dd.setVisibility(View.INVISIBLE);
-            //fillText(currWrapperData.artists, 0);
-            //fillText(currWrapperData.tracks, 1);
+            fillText(currWrapperData.artists, 0);
+            fillText(currWrapperData.tracks, 1);
         }
     }
 
@@ -161,6 +161,7 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                 JSONArray items = jo.getJSONArray("items");
                 switch (mode) {
                     case 0: // artist
+                        currWrapperData.artists = jo;
                         LinearLayout artistList = findViewById(R.id.topArtist_list);
                         HashMap<String, Integer> genreList = new HashMap<>();
                         for (int i = 0; i < 3; i++) {
