@@ -47,8 +47,8 @@ public class HomePage extends AppCompatActivity {
 
         home = findViewById(R.id.home);
         AnimationDrawable animationDrawable = (AnimationDrawable) home.getBackground();
-        animationDrawable.setEnterFadeDuration(2500);
-        animationDrawable.setExitFadeDuration(5000);
+        animationDrawable.setEnterFadeDuration(1000);
+        animationDrawable.setExitFadeDuration(3000);
         animationDrawable.start();
     }
 }

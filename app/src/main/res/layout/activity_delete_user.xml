@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/deleteUser"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/violetBlue">
+    android:background="@drawable/gradient_list">
     <View
         android:id="@+id/centerGuide2"
         android:layout_width="0dp"
@@ -34,7 +35,7 @@
         android:layout_marginTop="20dp"
         android:text="Write Password to Authenticate"
         android:fontFamily="@font/montserrat_medium"
-        android:textColor="@color/yellowGreen"
+        android:textColor="@color/white"
         android:textSize="18dp"
         />
     <EditText
@@ -57,7 +58,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@color/yellowGreen"
+        android:backgroundTint="@color/orangeRed"
         android:fontFamily="@font/montserrat_medium"
         android:text="Authenticate User"
         android:textColor="@color/black" />
@@ -75,7 +76,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@color/yellowGreen"
+        android:backgroundTint="@color/orangeRed"
         android:fontFamily="@font/montserrat_medium"
         android:text="Delete User"
         android:textColor="@color/black" />

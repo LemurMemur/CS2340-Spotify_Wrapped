@@ -6,12 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +31,7 @@ public class DeleteUserActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private String userPwd;
     private Button buttonReAuthenticate, buttonDeleteUser;
-
+    RelativeLayout deleteUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,11 @@ public class DeleteUserActivity extends AppCompatActivity {
         } else {
             reAuthenticateUser(firebaseUser);
         }
-
+        deleteUser = findViewById(R.id.deleteUser);
+        AnimationDrawable animationDrawable = (AnimationDrawable) deleteUser.getBackground();
+        animationDrawable.setEnterFadeDuration(1000);
+        animationDrawable.setExitFadeDuration(3000);
+        animationDrawable.start();
 
     }
 

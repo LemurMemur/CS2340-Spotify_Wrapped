@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,7 +28,7 @@ public class ChangePassword extends AppCompatActivity {
     private FirebaseAuth authProfile;
     private EditText editCurrPassword, editNewPassword, editConfirmNewPassword;
     private Button authenticate, update;
-
+    RelativeLayout changepw;
     private ImageButton goBack_btn;
     private ProgressBar progressBar;
     private String userPwdCurr;
@@ -65,6 +67,15 @@ public class ChangePassword extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        changepw = findViewById(R.id.changepw);
+        AnimationDrawable animationDrawable = (AnimationDrawable) changepw.getBackground();
+        animationDrawable.setEnterFadeDuration(1000);
+        animationDrawable.setExitFadeDuration(3000);
+        animationDrawable.start();
+
+
+
     }
 
 

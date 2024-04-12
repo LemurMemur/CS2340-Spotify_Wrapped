@@ -1,6 +1,7 @@
 package com.example.cs2340_spotify_wrapped;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.core.view.WindowCompat;
@@ -48,7 +50,7 @@ public class UserEdit extends AppCompatActivity {
 
     EditText userId, password,newEmailId;
     Button valid, update;
-
+    RelativeLayout edit;
     ImageButton goBack_btn;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String currentuid;
@@ -104,6 +106,13 @@ public class UserEdit extends AppCompatActivity {
 //                updateProfile();
 //            }
 //        });
+
+        edit = findViewById(R.id.edit);
+        AnimationDrawable animationDrawable = (AnimationDrawable) edit.getBackground();
+        animationDrawable.setEnterFadeDuration(1000);
+        animationDrawable.setExitFadeDuration(3000);
+        animationDrawable.start();
+
     }
 
     private void reAuthenticate(FirebaseUser firebaseUser) {

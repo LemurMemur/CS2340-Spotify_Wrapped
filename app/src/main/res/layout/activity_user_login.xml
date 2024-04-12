@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/violetBlue">
+    android:background="@drawable/gradient_list">
 
     <View
         android:id="@+id/centerGuide2"
@@ -37,7 +38,7 @@
         android:layout_marginTop="80dp"
         android:text="User ID"
         android:fontFamily="@font/montserrat_medium"
-        android:textColor="@color/yellowGreen"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <EditText
@@ -61,7 +62,7 @@
         android:layout_marginTop="20dp"
         android:text="PW"
         android:fontFamily="@font/montserrat_medium"
-        android:textColor="@color/yellowGreen"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <EditText
@@ -90,7 +91,7 @@
         android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true"
         android:text="Login"
-        android:backgroundTint="@color/yellowGreen"
+        android:backgroundTint="@color/orangeRed"
         android:textColor="@color/black"
         android:fontFamily="@font/montserrat_medium"
         android:layout_marginLeft="16dp"/>
@@ -106,7 +107,7 @@
         android:fontFamily="@font/montserrat_medium"
         android:gravity="center"
         android:text="Click to Register"
-        android:textColor="@color/yellowGreen"
+        android:textColor="@color/white"
         android:textSize="18dp" />
 
 </RelativeLayout>

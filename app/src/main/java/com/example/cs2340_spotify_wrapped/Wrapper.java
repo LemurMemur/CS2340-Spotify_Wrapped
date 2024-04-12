@@ -91,7 +91,7 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
 
         AnimationDrawable animationDrawable = (AnimationDrawable) relativeLayout.getBackground();
         animationDrawable.setEnterFadeDuration(2500);
-        animationDrawable.setExitFadeDuration(5000);
+        animationDrawable.setExitFadeDuration(3000);
         animationDrawable.start();
 
     }
