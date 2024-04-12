@@ -7,11 +7,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,20 +32,22 @@ public class DeleteUserActivity extends AppCompatActivity {
     private EditText editTextUserPwd;
     private ProgressBar progressBar;
     private String userPwd;
+    private ImageButton goBack_btn;
+
     private Button buttonReAuthenticate, buttonDeleteUser;
     RelativeLayout deleteUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_user);
 
-
         progressBar = findViewById(R.id.progressBar);
         editTextUserPwd = findViewById(R.id.pw);
         buttonDeleteUser = findViewById(R.id.delete);
         buttonReAuthenticate = findViewById(R.id.authenticate);
-
+        goBack_btn = findViewById(R.id.goBack_btn);
 
         buttonDeleteUser.setEnabled(false);
 
@@ -63,6 +67,14 @@ public class DeleteUserActivity extends AppCompatActivity {
         animationDrawable.setEnterFadeDuration(1000);
         animationDrawable.setExitFadeDuration(3000);
         animationDrawable.start();
+
+        goBack_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
