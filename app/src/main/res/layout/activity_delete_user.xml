@@ -15,6 +15,22 @@
         android:layout_height="2dp"
         android:background="@color/skyPink"
         android:layout_marginTop="70dp"/>
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentStart="true"
+
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="-9dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="iWrapper"
+        android:textAlignment="center"
+        android:textColor="@color/orangeRed"
+        android:textSize="50dp"
+        android:textStyle="bold" />
     <ImageButton
         android:id="@+id/goBack_btn"
         android:layout_width="wrap_content"
@@ -30,9 +46,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/horizontal_line"
+        android:layout_below="@id/textView"
         android:layout_marginTop="20dp"
-        android:text="Write Password to Authenticate"
+        android:text="Enter Password to Authenticate"
         android:fontFamily="@font/montserrat_medium"
         android:textColor="@color/yellowGreen"
         android:textSize="18dp"
@@ -61,24 +77,57 @@
         android:fontFamily="@font/montserrat_medium"
         android:text="Authenticate User"
         android:textColor="@color/black" />
+    <View
+        android:id="@+id/horizontal_line2"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@color/skyPink"
+        android:layout_below="@id/authenticate"
+        android:layout_marginTop="70dp"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/loginText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/horizontal_line2"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="9dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:gravity="center"
+        android:text="Please Enter Your Password to be able to Delete User."
+        android:textColor="@color/yellowGreen"
+        android:textSize="18dp" />
     <Button
         android:id="@+id/delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/authenticate"
+        android:layout_below="@id/loginText"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="20dp"
-        android:backgroundTint="@color/yellowGreen"
+        android:backgroundTint="@color/orangeRed"
         android:fontFamily="@font/montserrat_medium"
         android:text="Delete User"
         android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="94dp"
+        android:textColor="@color/orangeRed"
+        android:fontFamily="@font/montserrat_medium"
+        android:layout_below="@id/horizontal_line"
+        android:gravity="center"
+        android:textSize="22dp"
+        android:text="Delete iWrapper User" />
 
 
 

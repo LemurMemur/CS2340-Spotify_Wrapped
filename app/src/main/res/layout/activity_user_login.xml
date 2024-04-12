@@ -27,6 +27,22 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_alignParentRight="true" />
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentStart="true"
+
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-1dp"
+        android:layout_marginTop="-9dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="iWrapper"
+        android:textAlignment="center"
+        android:textColor="@color/orangeRed"
+        android:textSize="50dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/userText"
@@ -35,7 +51,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/horizontal_line"
         android:layout_marginTop="80dp"
-        android:text="User ID"
+        android:text="Enter Email"
         android:fontFamily="@font/montserrat_medium"
         android:textColor="@color/yellowGreen"
         android:textSize="18sp" />
@@ -59,7 +75,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/userID"
         android:layout_marginTop="20dp"
-        android:text="PW"
+        android:text="Enter Password"
         android:fontFamily="@font/montserrat_medium"
         android:textColor="@color/yellowGreen"
         android:textSize="18sp" />
@@ -75,7 +91,7 @@
         android:layout_marginRight="16dp"
         android:background="@color/white"
         android:inputType="textPassword"
-        android:hint=" 6 character minimum"/>
+        android:hint="6 character minimum"/>
     <ProgressBar
         android:id="@+id/progressBar"
         android:visibility="gone"
@@ -105,8 +121,20 @@
         android:layout_marginBottom="-151dp"
         android:fontFamily="@font/montserrat_medium"
         android:gravity="center"
-        android:text="Click to Register"
+        android:text="No Account? Click to Register"
         android:textColor="@color/yellowGreen"
         android:textSize="18dp" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="94dp"
+        android:textColor="@color/orangeRed"
+        android:fontFamily="@font/montserrat_medium"
+        android:gravity="center"
+        android:textSize="22dp"
+        android:text="Login to iWrapper" />
 
 </RelativeLayout>
