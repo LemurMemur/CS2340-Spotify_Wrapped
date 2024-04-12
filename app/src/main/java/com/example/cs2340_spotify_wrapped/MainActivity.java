@@ -1,12 +1,17 @@
 package com.example.cs2340_spotify_wrapped;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
+
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     Button button, changeProfile, changePassword, deleteUser;
     TextView textView;
     FirebaseUser user;
-
+    ConstraintLayout activity_main;
     public static JSONObject accountInfo;
 
     public static final String CLIENT_ID = "cd9bb99c695247f79fc42a18a2612c24";
@@ -122,6 +127,12 @@ public class MainActivity extends AppCompatActivity {
         profileBtn.setOnClickListener((v) -> {
             onGetUserProfileClicked();
         });
+
+        activity_main = findViewById(R.id.activity_main);
+        AnimationDrawable animationDrawable = (AnimationDrawable) activity_main.getBackground();
+        animationDrawable.setEnterFadeDuration(1000);
+        animationDrawable.setExitFadeDuration(3000);
+        animationDrawable.start();
 
     }
 

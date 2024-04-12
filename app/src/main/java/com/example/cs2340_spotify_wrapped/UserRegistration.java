@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +34,7 @@ public class UserRegistration extends AppCompatActivity {
     FirebaseAuth mAuth;
     ProgressBar progressBar;
     TextView textview;
+    RelativeLayout registration;
     @Override
     public void onStart() {
         super.onStart();
@@ -111,6 +114,11 @@ public class UserRegistration extends AppCompatActivity {
 
             }
         });
+        registration = findViewById(R.id.registration);
+        AnimationDrawable animationDrawable = (AnimationDrawable) registration.getBackground();
+        animationDrawable.setEnterFadeDuration(2500);
+        animationDrawable.setExitFadeDuration(3000);
+        animationDrawable.start();
     }
     private void gotoHome(View view) {
         Intent homeIntent = new Intent(this, HomePage.class);

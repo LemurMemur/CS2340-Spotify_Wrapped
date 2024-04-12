@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +26,7 @@ public class UserLogin extends AppCompatActivity {
     EditText editTextEmail, editTextPassword;
     Button buttonLogin;
     FirebaseAuth mAuth;
+    RelativeLayout login;
     ProgressBar progressBar;
     TextView textview;
 
@@ -106,7 +109,11 @@ public class UserLogin extends AppCompatActivity {
                         });
             }
         });
-
+        login = findViewById(R.id.login);
+        AnimationDrawable animationDrawable = (AnimationDrawable) login.getBackground();
+        animationDrawable.setEnterFadeDuration(1000);
+        animationDrawable.setExitFadeDuration(3000);
+        animationDrawable.start();
 
     }
 
