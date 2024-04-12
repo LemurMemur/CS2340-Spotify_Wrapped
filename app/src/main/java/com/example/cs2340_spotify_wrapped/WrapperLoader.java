@@ -32,16 +32,19 @@ public class WrapperLoader extends AppCompatActivity {
     private static final String[] paths = {"1 Month", "6 Months", "12 Months"};
     private static int currentTimeFrame = 1;
     public static WrapperData currWrapperData = null;
+    public static boolean viewingHistory = false;
     public static boolean gotArtists = false, gotTracks = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wrapper_information_loader);
         if (currWrapperData == null) {
+            viewingHistory = false;
             currWrapperData = new WrapperData();
             retrieveData(0);
             retrieveData(1); // will auto call goToSlideshow on the async call
         } else {
+            viewingHistory = true;
             goToSlideshow();
         }
     }
@@ -49,7 +52,7 @@ public class WrapperLoader extends AppCompatActivity {
     private void retrieveData (int mode) {
         if (MainActivity.mAccessToken == null) {
             Toast.makeText(this, "You need to get an access token first!", Toast.LENGTH_SHORT).show();
-            return;
+            goToMain();
         }
 
         // Create a request to get the user profile
@@ -96,6 +99,11 @@ public class WrapperLoader extends AppCompatActivity {
         if (gotArtists && gotTracks) {
             goToSlideshow();
         }
+    }
+    private void goToMain() {
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
     }
     private void goToSlideshow() {
         Intent intent = new Intent(getApplicationContext(), WrapperPage.class);

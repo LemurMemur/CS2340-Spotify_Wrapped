@@ -140,9 +140,15 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
             //TODO add redirect to recommendation page
         });
         Button saveToDatabase = findViewById(R.id.save_wrapper_database);
-        saveToDatabase.setOnClickListener((v) -> {
-            spotifyFirebaseManager.addWrapperData(WrapperLoader.currWrapperData);
-        });
+        if (WrapperLoader.viewingHistory) {
+            saveToDatabase.setVisibility(View.GONE);
+        } else {
+            saveToDatabase.setOnClickListener((v) -> {
+                spotifyFirebaseManager.addWrapperData(WrapperLoader.currWrapperData);
+                Toast.makeText(Wrapper.this, "Summary saved to cloud", Toast.LENGTH_SHORT).show();
+            });
+        }
+
     }
 
     private void initTimeSelect() {
