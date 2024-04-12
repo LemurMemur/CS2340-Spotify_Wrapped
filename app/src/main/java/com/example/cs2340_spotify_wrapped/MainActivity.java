@@ -173,14 +173,11 @@ public class MainActivity extends AppCompatActivity {
      */
     public void getCode() {
         goToWrapper();
-        //final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.CODE);
-        //AuthorizationClient.openLoginActivity(MainActivity.this, AUTH_CODE_REQUEST_CODE, request);
     }
 
     private void goToWrapper() {
-        Wrapper.currWrapperData = null;
-        Wrapper.slideshowRedirect = true;
-        Intent intent = new Intent(getApplicationContext(), Wrapper.class);
+        WrapperLoader.currWrapperData = null;
+        Intent intent = new Intent(getApplicationContext(), WrapperLoader.class);
         startActivity(intent);
     }
 

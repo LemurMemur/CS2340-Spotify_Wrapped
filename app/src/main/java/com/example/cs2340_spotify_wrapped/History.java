@@ -143,14 +143,14 @@ public class History extends AppCompatActivity implements AdapterView.OnItemSele
     private void initButtons() {
         ImageButton settings = findViewById(R.id.settingsGoBack);
         settings.setOnClickListener((v) -> {
-            Wrapper.currWrapperData = null;
-            Intent intent = new Intent(getApplicationContext(), Wrapper.class);
+            WrapperLoader.currWrapperData = null;
+            Intent intent = new Intent(getApplicationContext(), WrapperLoader.class);
             startActivity(intent);
         });
         Button game = findViewById(R.id.timeTravelButton);
         game.setOnClickListener((v) -> {
-            Wrapper.currWrapperData = returnData;
-            Intent intent = new Intent(getApplicationContext(), Wrapper.class);
+            WrapperLoader.currWrapperData = returnData;
+            Intent intent = new Intent(getApplicationContext(), WrapperLoader.class);
             startActivity(intent);
         });
     }

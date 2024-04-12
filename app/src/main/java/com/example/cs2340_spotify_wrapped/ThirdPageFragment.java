@@ -58,7 +58,7 @@ public class ThirdPageFragment extends Fragment {
     }
     private void initTracks() {
         try {
-            JSONArray items = Wrapper.currWrapperData.tracks.getJSONArray("items");
+            JSONArray items = WrapperLoader.currWrapperData.tracks.getJSONArray("items");
 
             LinearLayout trackList = getView().findViewById(R.id.topSong_list);
             for (int i = 0; i < 3; i++) {
