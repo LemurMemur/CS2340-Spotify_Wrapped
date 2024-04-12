@@ -130,18 +130,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <TextView
-                android:id="@+id/settingInformation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/horizontal_line"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/montserrat_medium"
-                android:gravity="center"
-                android:text="To Access Wrapper Page Click the Button."
-                android:textColor="@color/white"
-                android:textSize="22dp" />
+
 
             <Button
                 android:id="@+id/profile_btn"
@@ -168,14 +157,7 @@
 
 
 
-        <Button
-            android:id="@+id/deleteUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:text="Delete User"
-            app:layout_constraintStart_toStartOf="parent" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
