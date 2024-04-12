@@ -2,7 +2,6 @@ package com.example.cs2340_spotify_wrapped;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,8 +24,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.Set;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -115,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize the buttons
         Button tokenBtn = (Button) findViewById(R.id.token_btn);
-        Button codeBtn = (Button) findViewById(R.id.code_btn);
+        Button goToWrapperButton = (Button) findViewById(R.id.wrapperButton);
         Button profileBtn = (Button) findViewById(R.id.profile_btn);
 
         // Set the click listeners for the buttons
@@ -124,8 +120,8 @@ public class MainActivity extends AppCompatActivity {
             getToken();
         });
 
-        codeBtn.setOnClickListener((v) -> {
-            getCode();
+        goToWrapperButton.setOnClickListener((v) -> {
+            goToWrapper();
         });
 
         profileBtn.setOnClickListener((v) -> {
@@ -171,13 +167,11 @@ public class MainActivity extends AppCompatActivity {
      * What is code?
      * https://developer.spotify.com/documentation/general/guides/authorization-guide/
      */
-    public void getCode() {
-        goToWrapper();
-    }
 
     private void goToWrapper() {
-        WrapperLoader.currWrapperData = null;
-        Intent intent = new Intent(getApplicationContext(), WrapperLoader.class);
+        //WrapperLoader.currWrapperData = null;
+        //Intent intent = new Intent(getApplicationContext(), WrapperLoader.class);
+        Intent intent = new Intent(getApplicationContext(), TimeFrameSelection.class);
         startActivity(intent);
     }
 

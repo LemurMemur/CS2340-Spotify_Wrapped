@@ -28,16 +28,14 @@ public class WrapperLoader extends AppCompatActivity {
             "&time_range=medium_term",
             "&time_range=long_term"
     };
-    private SpotifyFirebaseManager spotifyFirebaseManager;
-    private static final String[] paths = {"1 Month", "6 Months", "12 Months"};
-    private static int currentTimeFrame = 1;
+    public static int currentTimeFrame = 1;
     public static WrapperData currWrapperData = null;
     public static boolean viewingHistory = false;
     public static boolean gotArtists = false, gotTracks = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_wrapper_information_loader);
+        setContentView(R.layout.activity_wrapper_loader);
         if (currWrapperData == null) {
             viewingHistory = false;
             currWrapperData = new WrapperData();

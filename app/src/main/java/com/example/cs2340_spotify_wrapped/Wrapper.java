@@ -34,7 +34,7 @@ import okhttp3.Callback;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class Wrapper extends AppCompatActivity {
 
     private String[] urls = {
             "https://api.spotify.com/v1/me/top/artists?limit=5",
@@ -47,9 +47,6 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
     };
     private SpotifyFirebaseManager spotifyFirebaseManager;
 
-    private Spinner timeSelectSpinner;
-    private static final String[] paths = {"1 Month", "6 Months", "12 Months"};
-    private static int currentTimeFrame = 1;
     //public static WrapperData currWrapperData = null;
 
     RelativeLayout relativeLayout;
@@ -153,73 +150,6 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
 
     }
 
-    private void initTimeSelect() {
-        timeSelectSpinner = (Spinner)findViewById(R.id.timeSelectSpinner);
-        ArrayAdapter<String>adapter = new ArrayAdapter<String>(
-                Wrapper.this,
-                android.R.layout.simple_spinner_item,
-                paths
-        );
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        timeSelectSpinner.setAdapter(adapter);
-        timeSelectSpinner.setOnItemSelectedListener(this);
-        timeSelectSpinner.setSelection(currentTimeFrame);
-        timeSelectSpinner.setVisibility(View.VISIBLE);
-    }
-    public void onItemSelected(AdapterView<?> parent, View view,
-                               int pos, long id) {
-        // An item is selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos).
-        if (pos != currentTimeFrame) {
-            currentTimeFrame = pos;
-            //apperData = null;
-            finish();
-            startActivity(getIntent());
-        }
-        if (parent != null && parent.getChildAt(0) != null) {
-            ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
-        }
-    }
-
-    public void onNothingSelected(AdapterView<?> parent) {
-        // Another interface callback.
-    }
-
-
-
-    private void initList (int mode) {
-        if (MainActivity.mAccessToken == null) {
-            Toast.makeText(this, "You need to get an access token first!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // Create a request to get the user profile
-        final Request request = new Request.Builder()
-                .url(urls[mode] + timeFrames[currentTimeFrame])
-                .addHeader("Authorization", "Bearer " + MainActivity.mAccessToken)
-                .build();
-        Call mCall = MainActivity.mOkHttpClient.newCall(request);
-        mCall.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.d("HTTP", "Failed to fetch data: " + e);
-                Toast.makeText(Wrapper.this, "Failed to fetch data, watch Logcat for more details",
-                        Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    JSONObject jo = new JSONObject(response.body().string());
-                    fillText(jo, mode);
-                } catch (JSONException e) {
-                    Log.d("JSON", "Failed to parse data: " + e);
-                    Toast.makeText(Wrapper.this, "Failed to parse data, watch Logcat for more details",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
 
     private void fillText(JSONObject jo, int mode) {
         runOnUiThread(() -> {
