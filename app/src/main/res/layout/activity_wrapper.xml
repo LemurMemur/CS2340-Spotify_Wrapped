@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="15dp"
-    android:background="@color/violetBlue">
+    android:background="@drawable/gradient_list">
     <!--this create horizontal line-->
 
     <View
@@ -30,7 +30,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/montserrat_medium"
         android:text="iWrapper"
-        android:textColor="@color/orangeRed"
+        android:textColor="@color/white"
         android:textSize="25dp" />
     <ImageButton
         android:id="@+id/setting"
@@ -244,6 +244,9 @@
         android:id="@+id/save_wrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/setting"
+        android:layout_marginTop="20dp"
+        android:layout_alignStart="@id/profile"
         android:text="Save Wrapper" />
 
     <Button
