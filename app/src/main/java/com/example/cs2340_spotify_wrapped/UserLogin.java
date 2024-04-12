@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ public class UserLogin extends AppCompatActivity {
     FirebaseAuth mAuth;
     ProgressBar progressBar;
     TextView textview;
+    RelativeLayout login;
 
     @Override
     public void onStart() {
@@ -68,6 +71,11 @@ public class UserLogin extends AppCompatActivity {
                 finish();
             }
         });
+        login = findViewById(R.id.login);
+        AnimationDrawable animationdrawable = (AnimationDrawable) login.getBackground();
+        animationdrawable.setEnterFadeDuration(1000);
+        animationdrawable.setExitFadeDuration(3000);
+        animationdrawable.start();
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
