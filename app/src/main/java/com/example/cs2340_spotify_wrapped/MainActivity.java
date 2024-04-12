@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
-    Button button, changeProfile, changePassword, deleteUser, wrapperPage;
+    Button button, changeProfile, changePassword, deleteUser;
     TextView textView;
     FirebaseUser user;
     ConstraintLayout activity_main;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private Call mCall;
 
     private TextView tokenTextView, codeTextView, profileTextView;
+    ImageButton settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         changeProfile = findViewById(R.id.changeProfile);
         changePassword = findViewById(R.id.changePassword);
         deleteUser = findViewById(R.id.deleteUser);
-        wrapperPage = findViewById(R.id.wrapperPage);
+
         user = auth.getCurrentUser();
         if(user == null) {
             Intent intent = new Intent(getApplicationContext(), UserLogin.class);
@@ -73,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
             textView.setText(user.getEmail());
         }
+
+
         changeProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,14 +108,9 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-        wrapperPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), WrapperPage.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+
+
+
         // Initialize the views
         tokenTextView = (TextView) findViewById(R.id.token_text_view);
         codeTextView = (TextView) findViewById(R.id.code_text_view);

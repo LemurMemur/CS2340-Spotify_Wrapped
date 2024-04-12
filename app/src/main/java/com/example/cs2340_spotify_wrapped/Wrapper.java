@@ -128,14 +128,17 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
     }
 
     private void initButtons() {
+        ImageButton history = findViewById(R.id.history);
+        history.setOnClickListener((v) -> {
+            Intent intent = new Intent(getApplicationContext(), History.class);
+            startActivity(intent);
+        });
         ImageButton profile = findViewById(R.id.profile);
         profile.setOnClickListener((v) -> {
             //TODO add redirect to profile page
         });
         ImageButton settings = findViewById(R.id.setting);
         settings.setOnClickListener((v) -> {
-            Intent intent = new Intent(getApplicationContext(), Settings.class);
-            startActivity(intent);
         });
         Button game = findViewById(R.id.miniGame_btn);
         game.setOnClickListener((v) -> {
@@ -144,6 +147,10 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
         Button recommendation = findViewById(R.id.recom_btn);
         recommendation.setOnClickListener((v) -> {
             //TODO add redirect to recommendation page
+        });
+        Button saveToDatabase = findViewById(R.id.save_wrapper_database);
+        saveToDatabase.setOnClickListener((v) -> {
+            spotifyFirebaseManager.addWrapperData(currWrapperData);
         });
     }
 
@@ -170,7 +177,9 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
             finish();
             startActivity(getIntent());
         }
-        ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+        if (parent != null && parent.getChildAt(0) != null) {
+            ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+        }
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
@@ -237,7 +246,6 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                             try {
                                 ((TextView) artistList.getChildAt(i)).setText(artist);
                             } catch (Exception e) {}
-                            spotifyFirebaseManager.addArtist(artists);
                         }
 
                         String topGenre = "None";
@@ -278,7 +286,6 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                             try {
                                 ((TextView) songList.getChildAt(i)).setText(song);
                             } catch (Exception e) {}
-                            spotifyFirebaseManager.addTrack(tracks);
                         }
 
                         break;
