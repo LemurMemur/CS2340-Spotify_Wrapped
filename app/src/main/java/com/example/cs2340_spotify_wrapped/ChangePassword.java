@@ -2,6 +2,7 @@ package com.example.cs2340_spotify_wrapped;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,7 +30,9 @@ public class ChangePassword extends AppCompatActivity {
     private FirebaseAuth authProfile;
     private EditText editCurrPassword, editNewPassword, editConfirmNewPassword;
     private Button authenticate, update;
+    private TextView textViewAuthenticated;
     RelativeLayout changepw;
+
     private ImageButton goBack_btn;
     private ProgressBar progressBar;
     private String userPwdCurr;
@@ -44,6 +48,7 @@ public class ChangePassword extends AppCompatActivity {
         update = findViewById(R.id.update);
         progressBar = findViewById(R.id.progressBar);
         goBack_btn = findViewById(R.id.goBack_btn);
+        textViewAuthenticated = findViewById(R.id.loginText);
         editNewPassword.setEnabled(false);
         editConfirmNewPassword.setEnabled(false);
         update.setEnabled(false);
@@ -69,13 +74,10 @@ public class ChangePassword extends AppCompatActivity {
         });
 
         changepw = findViewById(R.id.changepw);
-        AnimationDrawable animationDrawable = (AnimationDrawable) changepw.getBackground();
-        animationDrawable.setEnterFadeDuration(1000);
-        animationDrawable.setExitFadeDuration(3000);
-        animationDrawable.start();
-
-
-
+        AnimationDrawable animationdrawable = (AnimationDrawable) changepw.getBackground();
+        animationdrawable.setEnterFadeDuration(1000);
+        animationdrawable.setExitFadeDuration(3000);
+        animationdrawable.start();
     }
 
 
@@ -102,8 +104,12 @@ public class ChangePassword extends AppCompatActivity {
                                 editCurrPassword.setEnabled(false);
                                 editNewPassword.setEnabled(true);
                                 editConfirmNewPassword.setEnabled(true);
+                                textViewAuthenticated.setText("You are authenticated. You can update your password now.");
+
                                 update.setEnabled(true);
                                 authenticate.setEnabled(false);
+                                update.setBackgroundTintList(ContextCompat.getColorStateList(ChangePassword.this, R.color.yellowGreen));
+
 
 
                                 Toast.makeText(ChangePassword.this, "Password has been verified. Change password now.", Toast.LENGTH_SHORT).show();
