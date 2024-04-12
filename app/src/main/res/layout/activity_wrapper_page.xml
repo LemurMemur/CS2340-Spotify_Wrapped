@@ -6,12 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".WrapperPage">
 
-    <FrameLayout
-        android:id="@+id/clickableArea"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true"
-        android:focusable="true">
+
+
 
         <!-- Include the MovingCirclesView below. Make sure to replace 'com.yourpackage.MovingCirclesView'
              with your package name and actual path where the MovingCirclesView class is located. -->
@@ -22,14 +18,8 @@
             android:layout_height="match_parent"
             android:background="@color/black"/>
 
-        <View
-            android:id="@+id/tapArea"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:clickable="true"
-            android:focusable="true" />
 
-    </FrameLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

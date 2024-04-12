@@ -22,14 +22,6 @@ public class WrapperPage extends AppCompatActivity {
         // Apply the page transformer
         viewPager.setPageTransformer(new ZoomOutPageTransformer());
 
-        View tapArea = findViewById(R.id.tapArea);
-        tapArea.setOnClickListener(v -> {
-            int currentItem = viewPager.getCurrentItem();
-            if (currentItem < pagerAdapter.getItemCount() - 1) {
-                viewPager.setCurrentItem(currentItem + 1, true);
-            } else {
-                viewPager.setCurrentItem(0, true); // Optionally loop to the first item
-            }
-        });
+
     }
 }
