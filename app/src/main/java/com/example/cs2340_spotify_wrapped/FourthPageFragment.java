@@ -8,9 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 public class FourthPageFragment extends Fragment {
 
@@ -55,5 +62,34 @@ public class FourthPageFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        getActivity().runOnUiThread(() -> {
+            initGenre();
+        });
+
+    }
+    private void initGenre() {
+        try {
+            JSONArray items = WrapperLoader.currWrapperData.artists.getJSONArray("items");
+            HashMap<String, Integer> genreList = new HashMap<>();
+            String topGenre = "None";
+            int topGenreCount = 0;
+            for (int i = 0; i < items.length(); i++) {
+                JSONObject item = items.getJSONObject(i);
+                JSONArray genres = item.getJSONArray("genres");
+                for (int g = 0; g < genres.length(); ++g) {
+                    String genre = genres.getString(g);
+                    System.out.println(item.getString("name"));
+                    genreList.put(genre, genreList.getOrDefault(genre, 0) + 1);
+
+                    if (genreList.getOrDefault(genre, -1) > topGenreCount) {
+                        topGenreCount = genreList.getOrDefault(genre, -1);
+                        topGenre = genre;
+                    }
+                }
+            }
+            TextView genreText = getView().findViewById(R.id.topGenre);
+            genreText.setText(topGenre);
+
+        } catch (Exception e) {};
     }
 }

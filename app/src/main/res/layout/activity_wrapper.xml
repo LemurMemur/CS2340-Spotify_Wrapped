@@ -43,20 +43,20 @@
         android:layout_marginRight="30dp"/>
 
     <ImageButton
-        android:id="@+id/profile"
+        android:id="@+id/home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/setting"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="50dp"
         android:background="#00000000"
-        android:src="@drawable/profile" />
+        android:src="@drawable/home" />
 
     <ImageButton
         android:id="@+id/history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/profile"
+        android:layout_alignEnd="@+id/home"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="50dp"
         android:background="#00000000"
@@ -160,64 +160,40 @@
             android:textSize="25dp"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/timeFrame_text"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/topSong_list"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Time Frame"
-        android:textColor="@color/white"
-        android:textSize="25dp" />
 
-    <Spinner
-        android:id="@+id/timeSelectSpinner"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/timeFrame_text"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:spinnerMode="dropdown"
-        android:textColor="@color/white"
-        android:textSize="25dp" />
     <TextView
         android:id="@+id/topGenre_text"
-        android:text="Top \nGenre"
-        android:textSize="25dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:textColor="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/topSong_list"
         android:layout_alignLeft="@+id/centerGuide1"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
-        />
+        android:layout_marginLeft="-170dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Top \nGenre"
+        android:textColor="@color/white"
+        android:textSize="25dp" />
+
     <TextView
         android:id="@+id/topGenre"
-        android:text="genre"
-        android:textColor="@color/skyPink"
-        android:textSize="25dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/topGenre_text"
         android:layout_alignLeft="@+id/centerGuide1"
-        android:layout_marginLeft="20dp"
-        />
+        android:layout_marginLeft="-168dp"
+        android:layout_marginTop="11dp"
+        android:text="genre"
+        android:textColor="@color/skyPink"
+        android:textSize="25dp" />
 
     <Button
         android:id="@+id/miniGame_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/timeSelectSpinner"
+        android:layout_below="@+id/topSong_list"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="37dp"
+        android:layout_marginTop="141dp"
+        android:layout_marginEnd="36dp"
         android:layout_toStartOf="@+id/recom_btn"
         android:backgroundTint="@color/skyBlue"
         android:fontFamily="@font/montserrat_bold"
@@ -246,8 +222,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/setting"
         android:layout_marginTop="20dp"
-        android:layout_alignStart="@id/profile"
-        android:text="Save Wrapper" />
+        android:layout_alignStart="@id/home"
+        android:text="Save Image" />
 
     <Button
         android:id="@+id/save_wrapper_database"
@@ -255,7 +231,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/miniGame_btn"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="47dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
         android:text="Save History" />
 </RelativeLayout>

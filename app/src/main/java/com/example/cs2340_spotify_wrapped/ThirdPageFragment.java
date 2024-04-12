@@ -14,6 +14,9 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class ThirdPageFragment extends Fragment {
 
     private ConstraintLayout thirdFragment;
@@ -48,6 +51,29 @@ public class ThirdPageFragment extends Fragment {
         animationDrawable.setExitFadeDuration(3000);
         animationDrawable.start();
 
+        getActivity().runOnUiThread(() -> {
+            initTracks();
+        });
+
+    }
+    private void initTracks() {
+        try {
+            JSONArray items = WrapperLoader.currWrapperData.tracks.getJSONArray("items");
+
+            LinearLayout trackList = getView().findViewById(R.id.topSong_list);
+            for (int i = 0; i < 3; i++) {
+                String track = "";
+                if (i < items.length()) {
+                    JSONObject item = items.getJSONObject(i);
+                    track = item.getString("name");
+                    System.out.println(item.getString("name"));
+                }
+                try {
+                    ((TextView) trackList.getChildAt(i)).setText(track);
+                } catch (Exception e) {
+                }
+            }
+        } catch (Exception e) {};
     }
 
 

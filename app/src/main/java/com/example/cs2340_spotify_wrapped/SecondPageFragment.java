@@ -6,9 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 public class SecondPageFragment extends Fragment {
 
@@ -43,5 +49,28 @@ public class SecondPageFragment extends Fragment {
         animationDrawable.setEnterFadeDuration(2500);
         animationDrawable.setExitFadeDuration(3000);
         animationDrawable.start();
+        getActivity().runOnUiThread(() -> {
+            initArtists();
+        });
+
+    }
+    private void initArtists() {
+        try {
+            JSONArray items = WrapperLoader.currWrapperData.artists.getJSONArray("items");
+
+            LinearLayout artistList = getView().findViewById(R.id.topArtist_list);
+            for (int i = 0; i < 3; i++) {
+                String artist = "";
+                if (i < items.length()) {
+                    JSONObject item = items.getJSONObject(i);
+                    artist = item.getString("name");
+                    System.out.println(item.getString("name"));
+                }
+                try {
+                    ((TextView) artistList.getChildAt(i)).setText(artist);
+                } catch (Exception e) {
+                }
+            }
+        } catch (Exception e) {};
     }
 }

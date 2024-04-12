@@ -112,7 +112,7 @@
 
 
         <Button
-            android:id="@+id/code_btn"
+            android:id="@+id/wrapperButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -168,15 +168,13 @@
 
 
 
-
-
         <Button
-            android:id="@+id/wrapperPage"
+            android:id="@+id/deleteUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
-            android:text="WrapperPage"
+            android:text="Delete User"
             app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
 
