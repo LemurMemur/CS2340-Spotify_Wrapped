@@ -15,7 +15,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.common.base.MoreObjects;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,32 +23,27 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class Settings extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+public class History extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     ArrayList<WrapperData> history;
     WrapperData returnData;
+    boolean gotArtists = false, gotTracks = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_history);
         initHistory();
-        initHistorySelectionSpinner();
-        initButtons();
-        TextView[] trackTextViews = new TextView[3];
-        trackTextViews[0] = findViewById(R.id.artist_display);
-        trackTextViews[1] = findViewById(R.id.textView2);
-        trackTextViews[2] = findViewById(R.id.textView3);
+    }
 
-        TextView[] artists = new TextView[3];
-        artists[0] = findViewById(R.id.textView4);
-        artists[1] = findViewById(R.id.textView5);
-        artists[2] = findViewById(R.id.textView6);
+    private void initHistory() {
+        history = new ArrayList<>();
+        history.add(null);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference artistsRef = database.getReference("artists");
         DatabaseReference tracksRef = database.getReference("tracks");
@@ -57,77 +51,76 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         tracksRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int i = 0;
-                // Iterate through each child node
+                int i = 1;
+                gotTracks = true;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    if (i >= 3) break; // Exit loop after 3 tracks are displayed
-                    // Get the track data as a String
                     String trackData = snapshot.getValue(String.class);
                     // Convert the String data to a JSONObject
                     try {
                         JSONObject trackJSON = new JSONObject(trackData);
-                        // Now you have the track data as a JSONObject, you can use it as needed
-                        // For example, you can display it in a TextView or add it to a list
-                        // Display the track name in the corresponding TextView
-                        trackTextViews[i].setText(trackJSON.optString("name"));
-                        i++;
+                        if (i >= history.size()) {
+                            history.add(new WrapperData());
+                        }
+                        history.get(i).tracks = trackJSON;
+                        ++i;
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                }
+                if (gotTracks && gotArtists) {
+                    initHistorySelectionSpinner();
+                    initButtons();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Settings.this, "Failed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(History.this, "Failed",Toast.LENGTH_SHORT).show();
             }
         });
 
         artistsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int i = 0;
-                // Iterate through each child node
+                int i = 1;
+                gotArtists = true;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    if (i >= 3) break; // Exit loop after 3 tracks are displayed
-                    // Get the track data as a String
                     String artistData = snapshot.getValue(String.class);
                     // Convert the String data to a JSONObject
                     try {
                         JSONObject artistJSON = new JSONObject(artistData);
-                        // Now you have the track data as a JSONObject, you can use it as needed
-                        // For example, you can display it in a TextView or add it to a list
-                        // Display the track name in the corresponding TextView
-                        artists[i].setText(artistJSON.optString("name"));
-                        i++;
+                        if (i >= history.size()) {
+                            history.add(new WrapperData());
+                        }
+                        history.get(i).artists = artistJSON;
+                        ++i;
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                }
+                if (gotTracks && gotArtists) {
+                    initHistorySelectionSpinner();
+                    initButtons();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Settings.this, "Failed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(History.this, "Failed",Toast.LENGTH_SHORT).show();
             }
         });
 
-
-    }
-
-    private void initHistory() {
-        history = new ArrayList<>();
-        history.add(Wrapper.currWrapperData);
     }
 
     private void initHistorySelectionSpinner() {
         Spinner historySelectSpinner = (Spinner)findViewById(R.id.historySelectSpinner);
         String[] lst = new String[history.size()];
-        for (int i = 0; i < lst.length; ++i) {
+        for (int i = 1; i < lst.length; ++i) {
             lst[i] = "" + i;
         }
+        lst[0] = "None";
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                Settings.this,
+                History.this,
                 android.R.layout.simple_spinner_item,
                 lst
         );
@@ -148,6 +141,12 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
         // Another interface callback.
     }
     private void initButtons() {
+        ImageButton settings = findViewById(R.id.settingsGoBack);
+        settings.setOnClickListener((v) -> {
+            Wrapper.currWrapperData = null;
+            Intent intent = new Intent(getApplicationContext(), Wrapper.class);
+            startActivity(intent);
+        });
         Button game = findViewById(R.id.timeTravelButton);
         game.setOnClickListener((v) -> {
             Wrapper.currWrapperData = returnData;
@@ -155,6 +154,5 @@ public class Settings extends AppCompatActivity implements AdapterView.OnItemSel
             startActivity(intent);
         });
     }
-
 
 }
