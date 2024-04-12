@@ -76,7 +76,7 @@ public class DeleteUserActivity extends AppCompatActivity {
         goBack_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), MainActivity.class);
+                Intent intent = new Intent(v.getContext(), Settings.class);
                 startActivity(intent);
             }
         });
