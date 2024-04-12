@@ -61,59 +61,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         auth = FirebaseAuth.getInstance();
-        button = findViewById(R.id.logout_btn);
-        textView = findViewById(R.id.user_details);
-        changeProfile = findViewById(R.id.changeProfile);
-        changePassword = findViewById(R.id.changePassword);
-        deleteUser = findViewById(R.id.deleteUser);
+
         wrapperPage = findViewById(R.id.wrapperPage);
-        user = auth.getCurrentUser();
-        if(user == null) {
-            Intent intent = new Intent(getApplicationContext(), UserLogin.class);
-            startActivity(intent);
-            finish();
-        } else {
-            textView.setText(user.getEmail());
-        }
+        settings = findViewById(R.id.setting);
 
-
-        changeProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), UserEdit.class);
-                startActivity(intent);
-            }
-        });
-        changePassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ChangePassword.class);
-                startActivity(intent);
-            }
-        });
-        deleteUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), DeleteUserActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), UserLogin.class);
-                startActivity(intent);
-                finish();
-            }
-        });
         wrapperPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), WrapperPage.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Settings.class);
+                startActivity(intent);
             }
         });
         // Initialize the views
