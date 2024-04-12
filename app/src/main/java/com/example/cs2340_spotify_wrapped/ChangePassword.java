@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,7 @@ public class ChangePassword extends AppCompatActivity {
     private EditText editCurrPassword, editNewPassword, editConfirmNewPassword;
     private Button authenticate, update;
     private TextView textViewAuthenticated;
+    RelativeLayout changepw;
 
     private ImageButton goBack_btn;
     private ProgressBar progressBar;
@@ -69,6 +72,12 @@ public class ChangePassword extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        changepw = findViewById(R.id.changepw);
+        AnimationDrawable animationdrawable = (AnimationDrawable) changepw.getBackground();
+        animationdrawable.setEnterFadeDuration(1000);
+        animationdrawable.setExitFadeDuration(3000);
+        animationdrawable.start();
     }
 
 

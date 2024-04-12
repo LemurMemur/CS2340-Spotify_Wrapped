@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/violetBlue">
+    android:background="@drawable/gradient_list">
     <View
         android:id="@+id/centerGuide2"
         android:layout_width="0dp"
@@ -119,7 +119,7 @@
         android:layout_marginTop="40dp"
         android:layout_below="@id/pw"
         android:text="Authenticate Login"
-        android:backgroundTint="@color/yellowGreen"
+        android:backgroundTint="@color/orangeRed"
         android:textColor="@color/black"
         android:fontFamily="@font/montserrat_medium"
         />
@@ -141,7 +141,7 @@
         android:fontFamily="@font/montserrat_medium"
         android:gravity="center"
         android:text="Click to Login"
-        android:textColor="@color/yellowGreen"
+        android:textColor="@color/orangeRed"
         android:textSize="18dp" />
     <TextView
         android:id="@+id/textView"
@@ -150,7 +150,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="94dp"
-        android:textColor="@color/orangeRed"
+        android:textColor="@color/yellowGreen"
         android:fontFamily="@font/montserrat_medium"
         android:gravity="center"
         android:textSize="22dp"
