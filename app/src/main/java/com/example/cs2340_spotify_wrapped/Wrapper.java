@@ -124,10 +124,12 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
             Intent intent = new Intent(getApplicationContext(), History.class);
             startActivity(intent);
         });
-        ImageButton profile = findViewById(R.id.profile);
-        profile.setOnClickListener((v) -> {
-            //TODO add redirect to profile page
+        ImageButton home = findViewById(R.id.home);
+        home.setOnClickListener((v) -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
         });
+
         ImageButton settings = findViewById(R.id.setting);
         settings.setOnClickListener((v) -> {
         });
