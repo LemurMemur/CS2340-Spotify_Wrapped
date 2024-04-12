@@ -76,7 +76,11 @@
             android:exported="false"
             android:label="wrapper"
             android:theme="@style/Theme.CS2340Spotify_Wrapped" />
-
+        <activity
+            android:name=".WrapperPage"
+            android:exported="false"
+            android:label="wrapperPage"
+            android:theme="@style/Theme.CS2340Spotify_Wrapped" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
