@@ -59,6 +59,7 @@ public class UserRegistration extends AppCompatActivity {
         textview = findViewById(R.id.loginText);
         ImageButton home_btn = findViewById(R.id.goBack_btn);
 
+
         home_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,10 +116,10 @@ public class UserRegistration extends AppCompatActivity {
             }
         });
         registration = findViewById(R.id.registration);
-        AnimationDrawable animationDrawable = (AnimationDrawable) registration.getBackground();
-        animationDrawable.setEnterFadeDuration(2500);
-        animationDrawable.setExitFadeDuration(3000);
-        animationDrawable.start();
+        AnimationDrawable animationdrawable = (AnimationDrawable) registration.getBackground();
+        animationdrawable.setEnterFadeDuration(1000);
+        animationdrawable.setExitFadeDuration(3000);
+        animationdrawable.start();
     }
     private void gotoHome(View view) {
         Intent homeIntent = new Intent(this, HomePage.class);

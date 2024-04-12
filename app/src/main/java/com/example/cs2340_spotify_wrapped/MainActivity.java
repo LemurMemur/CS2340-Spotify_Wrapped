@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     private Call mCall;
 
     private TextView tokenTextView, codeTextView, profileTextView;
+    ImageButton settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
             textView.setText(user.getEmail());
         }
+
+
         changeProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

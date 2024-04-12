@@ -22,8 +22,10 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.core.view.WindowCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -50,7 +52,9 @@ public class UserEdit extends AppCompatActivity {
 
     EditText userId, password,newEmailId;
     Button valid, update;
+    TextView textViewAuthenticated;
     RelativeLayout edit;
+
     ImageButton goBack_btn;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String currentuid;
@@ -73,6 +77,7 @@ public class UserEdit extends AppCompatActivity {
         newEmailId = findViewById(R.id.confirm_pw);
         password = findViewById(R.id.pw);
         valid = findViewById(R.id.authenticate);
+        textViewAuthenticated = findViewById(R.id.loginText);
         update = findViewById(R.id.update);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -94,6 +99,11 @@ public class UserEdit extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        edit = findViewById(R.id.edit);
+        AnimationDrawable animationdrawable = (AnimationDrawable) edit.getBackground();
+        animationdrawable.setEnterFadeDuration(1000);
+        animationdrawable.setExitFadeDuration(3000);
+        animationdrawable.start();
 
 
 
@@ -106,13 +116,6 @@ public class UserEdit extends AppCompatActivity {
 //                updateProfile();
 //            }
 //        });
-
-        edit = findViewById(R.id.edit);
-        AnimationDrawable animationDrawable = (AnimationDrawable) edit.getBackground();
-        animationDrawable.setEnterFadeDuration(1000);
-        animationDrawable.setExitFadeDuration(3000);
-        animationDrawable.start();
-
     }
 
     private void reAuthenticate(FirebaseUser firebaseUser) {
@@ -136,11 +139,12 @@ public class UserEdit extends AppCompatActivity {
                                 progressBar.setVisibility(View.GONE);
 
                                 Toast.makeText(UserEdit.this, "Password has been verified", Toast.LENGTH_LONG).show();
-
+                                textViewAuthenticated.setText("You are authenticated. You can update your email now.");
                                 update.setEnabled(true);
                                 newEmailId.setEnabled(true);
                                 password.setEnabled(false);
                                 valid.setEnabled(false);
+                                update.setBackgroundTintList(ContextCompat.getColorStateList(UserEdit.this, R.color.yellowGreen));
 
                                 update.setOnClickListener(new View.OnClickListener() {
                                     @Override
