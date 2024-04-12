@@ -102,6 +102,14 @@
             android:layout_marginLeft="16dp"
             android:text="Delete User"
             app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/wrapperPage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="WrapperPage"
+            app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
