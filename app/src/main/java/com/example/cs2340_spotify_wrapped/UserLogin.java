@@ -26,9 +26,9 @@ public class UserLogin extends AppCompatActivity {
     EditText editTextEmail, editTextPassword;
     Button buttonLogin;
     FirebaseAuth mAuth;
-    RelativeLayout login;
     ProgressBar progressBar;
     TextView textview;
+    RelativeLayout login;
 
     @Override
     public void onStart() {
@@ -71,6 +71,11 @@ public class UserLogin extends AppCompatActivity {
                 finish();
             }
         });
+        login = findViewById(R.id.login);
+        AnimationDrawable animationdrawable = (AnimationDrawable) login.getBackground();
+        animationdrawable.setEnterFadeDuration(1000);
+        animationdrawable.setExitFadeDuration(3000);
+        animationdrawable.start();
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,11 +114,7 @@ public class UserLogin extends AppCompatActivity {
                         });
             }
         });
-        login = findViewById(R.id.login);
-        AnimationDrawable animationDrawable = (AnimationDrawable) login.getBackground();
-        animationDrawable.setEnterFadeDuration(1000);
-        animationDrawable.setExitFadeDuration(3000);
-        animationDrawable.start();
+
 
     }
 

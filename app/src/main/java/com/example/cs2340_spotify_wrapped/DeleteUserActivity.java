@@ -3,6 +3,7 @@ package com.example.cs2340_spotify_wrapped;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,11 +28,13 @@ import com.google.firebase.auth.FirebaseUser;
 public class DeleteUserActivity extends AppCompatActivity {
     private FirebaseAuth authProfile;
     private FirebaseUser firebaseUser;
+    private TextView textViewAuthenticated;
     private EditText editTextUserPwd;
+    RelativeLayout deleteUser;
     private ProgressBar progressBar;
     private String userPwd;
     private Button buttonReAuthenticate, buttonDeleteUser;
-    RelativeLayout deleteUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class DeleteUserActivity extends AppCompatActivity {
 
 
         progressBar = findViewById(R.id.progressBar);
+        textViewAuthenticated = findViewById(R.id.loginText);
         editTextUserPwd = findViewById(R.id.pw);
         buttonDeleteUser = findViewById(R.id.delete);
         buttonReAuthenticate = findViewById(R.id.authenticate);
@@ -59,10 +63,11 @@ public class DeleteUserActivity extends AppCompatActivity {
             reAuthenticateUser(firebaseUser);
         }
         deleteUser = findViewById(R.id.deleteUser);
-        AnimationDrawable animationDrawable = (AnimationDrawable) deleteUser.getBackground();
-        animationDrawable.setEnterFadeDuration(1000);
-        animationDrawable.setExitFadeDuration(3000);
-        animationDrawable.start();
+        AnimationDrawable animationdrawable = (AnimationDrawable) deleteUser.getBackground();
+        animationdrawable.setEnterFadeDuration(1000);
+        animationdrawable.setExitFadeDuration(3000);
+        animationdrawable.start();
+
 
     }
 
@@ -87,6 +92,9 @@ public class DeleteUserActivity extends AppCompatActivity {
                                 editTextUserPwd.setEnabled(false);
                                 buttonDeleteUser.setEnabled(true);
                                 buttonReAuthenticate.setEnabled(false);
+                                textViewAuthenticated.setText("You are authenticated. You can delete your account now.");
+
+                                buttonDeleteUser.setBackgroundTintList(ContextCompat.getColorStateList(DeleteUserActivity.this, R.color.yellowGreen));
 
 
                                 Toast.makeText(DeleteUserActivity.this, "Password has been verified. You can delete user now.", Toast.LENGTH_SHORT).show();
