@@ -57,10 +57,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         auth = FirebaseAuth.getInstance();
-        button = findViewById(R.id.logout_btn);
         textView = findViewById(R.id.user_details);
-        changeProfile = findViewById(R.id.changeProfile);
-        changePassword = findViewById(R.id.changePassword);
         deleteUser = findViewById(R.id.deleteUser);
         user = auth.getCurrentUser();
         if(user == null) {
