@@ -2,12 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+    android:id="@+id/activity_settings"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_list"
-    tools:context=".MainActivity">
-
+    tools:context=".Settings">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,14 +24,14 @@
 
 
         <ImageButton
-            android:id="@+id/setting"
+            android:id="@+id/home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginTop="22dp"
             android:layout_marginRight="-350dp"
             android:background="#00000000"
-            android:src="@drawable/setting" />
+            android:src="@drawable/home" />
 
         <TextView
             android:id="@+id/appName"
@@ -57,66 +56,7 @@
             android:layout_marginTop="-10dp"
             android:background="@color/skyPink" />
 
-        <TextView
-            android:id="@+id/welcome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/horizontal_line"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/montserrat_medium"
-            android:gravity="center"
-            android:text="Welcome to the iWrapper Dashboard!"
-            android:textColor="@color/white"
-            android:textSize="22dp" />
-        <TextView
-            android:id="@+id/tokengetter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/welcome"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/montserrat_medium"
-            android:gravity="center"
-            android:text="Please authenticate or reauthenticate with spotify."
-            android:textColor="@color/white"
-            android:textSize="16dp" />
 
-        <Button
-            android:id="@+id/token_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tokengetter"
-            android:layout_margin="8dp"
-            android:text="Login to Spotify" />
-        <TextView
-            android:id="@+id/wrappergetter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/welcome"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/montserrat_medium"
-            android:gravity="center"
-            android:text="Once authenticated, click Wrapper to view your personalized spotify wrapped."
-            android:textColor="@color/white"
-            android:textSize="16dp" />
-
-        <TextView
-            android:id="@+id/code_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:visibility="gone"
-            tools:text="Code:" />
-
-
-        <Button
-            android:id="@+id/wrapperButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="Wrapper" />
 
         <TextView
             android:id="@+id/response_text_view"
@@ -139,7 +79,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:gravity="center"
-                android:text="To Access Wrapper Page Click the Button."
+                android:text="iWrapper Settings"
                 android:textColor="@color/white"
                 android:textSize="22dp" />
 
@@ -165,8 +105,32 @@
             android:text="Hello World!"
             android:visibility="gone" />
 
+        <Button
+            android:id="@+id/logout_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="Logout"
+            app:layout_constraintStart_toStartOf="parent" />
 
+        <Button
+            android:id="@+id/changeProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="Edit Profile"
+            app:layout_constraintStart_toStartOf="parent" />
 
+        <Button
+            android:id="@+id/changePassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="Edit Password"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/deleteUser"
@@ -176,6 +140,7 @@
             android:layout_marginLeft="16dp"
             android:text="Delete User"
             app:layout_constraintStart_toStartOf="parent" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

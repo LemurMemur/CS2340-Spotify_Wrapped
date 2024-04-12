@@ -71,39 +71,14 @@ public class MainActivity extends AppCompatActivity {
             textView.setText(user.getEmail());
         }
 
-
-        changeProfile.setOnClickListener(new View.OnClickListener() {
+        settings = findViewById(R.id.setting);
+        settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), UserEdit.class);
+                Intent intent = new Intent(MainActivity.this, Settings.class);
                 startActivity(intent);
             }
         });
-        changePassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ChangePassword.class);
-                startActivity(intent);
-            }
-        });
-        deleteUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), DeleteUserActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getApplicationContext(), UserLogin.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
         // Initialize the views
         tokenTextView = (TextView) findViewById(R.id.token_text_view);
         codeTextView = (TextView) findViewById(R.id.code_text_view);
