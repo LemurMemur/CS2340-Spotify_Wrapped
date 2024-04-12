@@ -48,23 +48,18 @@
         android:layout_below="@id/appName"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"/>
+
     <Button
         android:id="@+id/signUp_btn"
-        android:text="SignUp"
-        android:textSize="20dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/orangeRed"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/login_btn"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"/>
-
-    <Button
-        android:id="@+id/spotify_api_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Spotify API Button" />
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/orangeRed"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Sign Up"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
 
 </RelativeLayout>
