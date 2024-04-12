@@ -50,9 +50,7 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
     private Spinner timeSelectSpinner;
     private static final String[] paths = {"1 Month", "6 Months", "12 Months"};
     private static int currentTimeFrame = 1;
-    public static WrapperData currWrapperData = null;
-    public static boolean gotArtists = false, gotTracks = false;
-    public static boolean slideshowRedirect = false;
+    //public static WrapperData currWrapperData = null;
 
     RelativeLayout relativeLayout;
 
@@ -66,19 +64,10 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
 //        DatabaseReference myRef = database.getReference("messsage");
 //        myRef.setValue("Hello, World");
 
-        if (currWrapperData == null) { // if regular opening
-            currWrapperData = new WrapperData();
-            initTimeSelect();
-            initList(0);
-            initList(1); // redirect to wrapper page in here if redirect is true
-        } else {
-            //TODO change time frame text to date of original
-            //TODO hide dropdown
-            Spinner dd = findViewById(R.id.timeSelectSpinner);
-            dd.setVisibility(View.INVISIBLE);
-            fillText(currWrapperData.artists, 0);
-            fillText(currWrapperData.tracks, 1);
-        }
+        //Spinner dd = findViewById(R.id.timeSelectSpinner);
+            //dd.setVisibility(View.INVISIBLE);
+        fillText(WrapperLoader.currWrapperData.artists, 0);
+        fillText(WrapperLoader.currWrapperData.tracks, 1);
 
         relativeLayout = findViewById(R.id.relativelayout);
         Button save_wrapper = findViewById(R.id.save_wrapper);
@@ -152,7 +141,7 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
         });
         Button saveToDatabase = findViewById(R.id.save_wrapper_database);
         saveToDatabase.setOnClickListener((v) -> {
-            spotifyFirebaseManager.addWrapperData(currWrapperData);
+            spotifyFirebaseManager.addWrapperData(WrapperLoader.currWrapperData);
         });
     }
 
@@ -175,7 +164,7 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
         // parent.getItemAtPosition(pos).
         if (pos != currentTimeFrame) {
             currentTimeFrame = pos;
-            currWrapperData = null;
+            //apperData = null;
             finish();
             startActivity(getIntent());
         }
@@ -230,9 +219,6 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                 JSONArray items = jo.getJSONArray("items");
                 switch (mode) {
                     case 0: // artist
-                        gotArtists = true;
-                        currWrapperData.artists = jo;
-                        if (slideshowRedirect) break;
                         HashMap<String, Integer> genreList = new HashMap<>();
                         String topGenre = "None";
                         int topGenreCount = 0;
@@ -270,9 +256,6 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                         }
                         break;
                     case 1: // songs
-                        gotTracks = true;
-                        currWrapperData.tracks = jo;
-                        if (slideshowRedirect) break;
                         JSONObject tracks = new JSONObject();
                         LinearLayout songList = findViewById(R.id.topSong_list);
                         for (int i = 0; i < 3; i++) {
@@ -297,12 +280,6 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                 Log.d("JSON", "Failed to parse data: " + e);
                 Toast.makeText(Wrapper.this, "Failed to parse data, watch Logcat for more details",
                         Toast.LENGTH_SHORT).show();
-            }
-            if (gotArtists && gotTracks && slideshowRedirect) {
-                slideshowRedirect = false;
-                Intent intent = new Intent(getApplicationContext(), WrapperPage.class);
-                startActivity(intent);
-                finish();
             }
         });
     }

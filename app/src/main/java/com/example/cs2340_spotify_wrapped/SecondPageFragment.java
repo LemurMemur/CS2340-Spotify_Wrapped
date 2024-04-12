@@ -56,7 +56,7 @@ public class SecondPageFragment extends Fragment {
     }
     private void initArtists() {
         try {
-            JSONArray items = Wrapper.currWrapperData.artists.getJSONArray("items");
+            JSONArray items = WrapperLoader.currWrapperData.artists.getJSONArray("items");
 
             LinearLayout artistList = getView().findViewById(R.id.topArtist_list);
             for (int i = 0; i < 3; i++) {

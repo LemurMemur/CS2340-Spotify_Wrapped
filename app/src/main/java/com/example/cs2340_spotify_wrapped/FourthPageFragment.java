@@ -69,7 +69,7 @@ public class FourthPageFragment extends Fragment {
     }
     private void initGenre() {
         try {
-            JSONArray items = Wrapper.currWrapperData.artists.getJSONArray("items");
+            JSONArray items = WrapperLoader.currWrapperData.artists.getJSONArray("items");
             HashMap<String, Integer> genreList = new HashMap<>();
             String topGenre = "None";
             int topGenreCount = 0;
