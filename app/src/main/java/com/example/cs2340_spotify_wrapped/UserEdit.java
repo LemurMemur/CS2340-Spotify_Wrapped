@@ -20,8 +20,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.core.view.WindowCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -48,6 +50,7 @@ public class UserEdit extends AppCompatActivity {
 
     EditText userId, password,newEmailId;
     Button valid, update;
+    TextView textViewAuthenticated;
 
     ImageButton goBack_btn;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -71,6 +74,7 @@ public class UserEdit extends AppCompatActivity {
         newEmailId = findViewById(R.id.confirm_pw);
         password = findViewById(R.id.pw);
         valid = findViewById(R.id.authenticate);
+        textViewAuthenticated = findViewById(R.id.loginText);
         update = findViewById(R.id.update);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -127,11 +131,12 @@ public class UserEdit extends AppCompatActivity {
                                 progressBar.setVisibility(View.GONE);
 
                                 Toast.makeText(UserEdit.this, "Password has been verified", Toast.LENGTH_LONG).show();
-
+                                textViewAuthenticated.setText("You are authenticated. You can update your email now.");
                                 update.setEnabled(true);
                                 newEmailId.setEnabled(true);
                                 password.setEnabled(false);
                                 valid.setEnabled(false);
+                                update.setBackgroundTintList(ContextCompat.getColorStateList(UserEdit.this, R.color.yellowGreen));
 
                                 update.setOnClickListener(new View.OnClickListener() {
                                     @Override
