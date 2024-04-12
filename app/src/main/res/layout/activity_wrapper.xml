@@ -247,7 +247,7 @@
         android:layout_below="@+id/setting"
         android:layout_marginTop="20dp"
         android:layout_alignStart="@id/profile"
-        android:text="Save Wrapper" />
+        android:text="Save Image" />
 
     <Button
         android:id="@+id/save_wrapper_database"
