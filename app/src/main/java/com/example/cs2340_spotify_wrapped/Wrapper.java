@@ -51,6 +51,8 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
     private static final String[] paths = {"1 Month", "6 Months", "12 Months"};
     private static int currentTimeFrame = 1;
     public static WrapperData currWrapperData = null;
+    public static boolean gotArtists = false, gotTracks = false;
+    public static boolean slideshowRedirect = false;
 
     RelativeLayout relativeLayout;
 
@@ -68,7 +70,7 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
             currWrapperData = new WrapperData();
             initTimeSelect();
             initList(0);
-            initList(1);
+            initList(1); // redirect to wrapper page in here if redirect is true
         } else {
             //TODO change time frame text to date of original
             //TODO hide dropdown
@@ -212,7 +214,6 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     JSONObject jo = new JSONObject(response.body().string());
-                    JSONArray JAitems = jo.getJSONArray("items");
                     fillText(jo, mode);
                 } catch (JSONException e) {
                     Log.d("JSON", "Failed to parse data: " + e);
@@ -229,25 +230,10 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                 JSONArray items = jo.getJSONArray("items");
                 switch (mode) {
                     case 0: // artist
-
+                        gotArtists = true;
                         currWrapperData.artists = jo;
-                        LinearLayout artistList = findViewById(R.id.topArtist_list);
+                        if (slideshowRedirect) break;
                         HashMap<String, Integer> genreList = new HashMap<>();
-                        JSONObject artists = new JSONObject();
-                        for (int i = 0; i < 3; i++) {
-                            String artist = "";
-                            if (i < items.length()) {
-                                JSONObject item = items.getJSONObject(i);
-                                System.out.println(item.getString("name"));
-                                artist = item.getString("name");
-                                artists = items.getJSONObject(i);
-                                artists.put("artist", "The artist");
-                            }
-                            try {
-                                ((TextView) artistList.getChildAt(i)).setText(artist);
-                            } catch (Exception e) {}
-                        }
-
                         String topGenre = "None";
                         int topGenreCount = 0;
                         for (int i = 0; i < items.length(); i++) {
@@ -263,15 +249,30 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                                     topGenre = genre;
                                 }
                             }
-
                         }
-
                         TextView genreText = findViewById(R.id.topGenre);
                         genreText.setText(topGenre);
 
+                        LinearLayout artistList = findViewById(R.id.topArtist_list);
+                        JSONObject artists = new JSONObject();
+                        for (int i = 0; i < 3; i++) {
+                            String artist = "";
+                            if (i < items.length()) {
+                                JSONObject item = items.getJSONObject(i);
+                                System.out.println(item.getString("name"));
+                                artist = item.getString("name");
+                                artists = items.getJSONObject(i);
+                                artists.put("artist", "The artist");
+                            }
+                            try {
+                                ((TextView) artistList.getChildAt(i)).setText(artist);
+                            } catch (Exception e) {}
+                        }
                         break;
                     case 1: // songs
+                        gotTracks = true;
                         currWrapperData.tracks = jo;
+                        if (slideshowRedirect) break;
                         JSONObject tracks = new JSONObject();
                         LinearLayout songList = findViewById(R.id.topSong_list);
                         for (int i = 0; i < 3; i++) {
@@ -289,7 +290,6 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                         }
 
                         break;
-
                     default:
                 }
 
@@ -297,6 +297,12 @@ public class Wrapper extends AppCompatActivity implements AdapterView.OnItemSele
                 Log.d("JSON", "Failed to parse data: " + e);
                 Toast.makeText(Wrapper.this, "Failed to parse data, watch Logcat for more details",
                         Toast.LENGTH_SHORT).show();
+            }
+            if (gotArtists && gotTracks && slideshowRedirect) {
+                slideshowRedirect = false;
+                Intent intent = new Intent(getApplicationContext(), WrapperPage.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
