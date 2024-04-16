@@ -33,8 +33,6 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
     FirebaseAuth auth;
-    Button button, changeProfile, changePassword, deleteUser, wrapperPage;
-    TextView textView;
     FirebaseUser user;
     ConstraintLayout activity_main;
     public static JSONObject accountInfo;
@@ -49,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
     public static String mAccessToken, mAccessCode;
     private Call mCall;
 
-    private TextView tokenTextView, codeTextView, profileTextView;
     ImageButton settings;
 
     @Override
@@ -57,15 +54,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         auth = FirebaseAuth.getInstance();
-        textView = findViewById(R.id.user_details);
-        deleteUser = findViewById(R.id.deleteUser);
         user = auth.getCurrentUser();
         if(user == null) {
             Intent intent = new Intent(getApplicationContext(), UserLogin.class);
             startActivity(intent);
             finish();
-        } else {
-            textView.setText(user.getEmail());
         }
 
         settings = findViewById(R.id.setting);
@@ -76,15 +69,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        // Initialize the views
-        tokenTextView = (TextView) findViewById(R.id.token_text_view);
-        codeTextView = (TextView) findViewById(R.id.code_text_view);
-        profileTextView = (TextView) findViewById(R.id.response_text_view);
+
 
         // Initialize the buttons
         Button tokenBtn = (Button) findViewById(R.id.token_btn);
         Button goToWrapperButton = (Button) findViewById(R.id.wrapperButton);
-        Button profileBtn = (Button) findViewById(R.id.profile_btn);
 
         // Set the click listeners for the buttons
 
@@ -93,11 +82,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         goToWrapperButton.setOnClickListener((v) -> {
-            goToWrapper();
-        });
-
-        profileBtn.setOnClickListener((v) -> {
-            onGetUserProfileClicked();
+            getToken();
+            // goToWrapper();
         });
 
         activity_main = findViewById(R.id.activity_main);
@@ -143,41 +129,10 @@ public class MainActivity extends AppCompatActivity {
     private void goToWrapper() {
         //WrapperLoader.currWrapperData = null;
         //Intent intent = new Intent(getApplicationContext(), WrapperLoader.class);
-        Intent intent = new Intent(getApplicationContext(), TimeFrameSelection.class);
+        Intent intent = new Intent(MainActivity.this, TimeFrameSelection.class);
         startActivity(intent);
     }
 
-    /**
-     * When the app leaves this activity to momentarily get a token/code, this function
-     * fetches the result of that external activity to get the response from Spotify
-     */
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        final AuthorizationResponse response = AuthorizationClient.getResponse(resultCode, data);
-
-        Bundle bd = data.getExtras();
-        if (data.hasExtra("EXTRA_AUTH_RESPONSE")) {
-            System.out.println("has extra");
-            Bundle s = data.getBundleExtra("EXTRA_AUTH_RESPONSE");
-            System.out.println(s);
-        } else {
-            // Do something else
-            System.out.println("no extra");
-        }
-
-        System.out.println("request code is " + requestCode);
-        // Check which request code is present (if any)
-        if (AUTH_TOKEN_REQUEST_CODE == requestCode) {
-            System.out.println("1");
-            mAccessToken = response.getAccessToken();
-            setTextAsync(mAccessToken, tokenTextView);
-        } else if (AUTH_CODE_REQUEST_CODE == requestCode) {
-            System.out.println("2");
-            mAccessCode = response.getCode();
-            setTextAsync(mAccessCode, codeTextView);
-        }
-    }
 
 
     @Override
@@ -192,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 case TOKEN:
                     // Handle successful response
                     mAccessToken = response.getAccessToken();
-                    setTextAsync(mAccessToken, tokenTextView);
+                    goToWrapper();
                     break;
 
                 // Auth flow returned an error
@@ -242,7 +197,6 @@ public class MainActivity extends AppCompatActivity {
                     final JSONObject jsonObject = new JSONObject(response.body().string());
                     accountInfo = jsonObject;
                     System.out.println(accountInfo);
-                    setTextAsync(jsonObject.toString(3), profileTextView);
                 } catch (JSONException e) {
                     Log.d("JSON", "Failed to parse data: " + e);
                     Toast.makeText(MainActivity.this, "Failed to parse data, watch Logcat for more details",

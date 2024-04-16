@@ -73,6 +73,7 @@ public class Settings extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Settings.this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         activity_settings = findViewById(R.id.activity_settings);
