@@ -6,13 +6,15 @@ public class QuizModal {
     private String option2;
     private String option3;
     private String answer;
+    private String imageUrl; // URL for the image of the question
 
-    public QuizModal(String question, String option1, String option2, String option3, String answer) {
+    public QuizModal(String question, String option1, String option2, String option3, String answer, String imageUrl) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
         this.option3 = option3;
         this.answer = answer;
+        this.imageUrl = imageUrl;
     }
 
     public String getQuestion() {
@@ -53,5 +55,13 @@ public class QuizModal {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
