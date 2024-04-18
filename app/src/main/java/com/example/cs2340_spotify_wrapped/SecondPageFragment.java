@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -49,9 +52,13 @@ public class SecondPageFragment extends Fragment {
         animationDrawable.setEnterFadeDuration(2500);
         animationDrawable.setExitFadeDuration(3000);
         animationDrawable.start();
+
+
         getActivity().runOnUiThread(() -> {
             initArtists();
+            initPicture();
         });
+
 
     }
     private void initArtists() {
@@ -72,5 +79,20 @@ public class SecondPageFragment extends Fragment {
                 }
             }
         } catch (Exception e) {};
+    }
+
+    private void initPicture() {
+        try {
+
+            JSONArray ja = WrapperLoader.currWrapperData.artists.getJSONArray("items").getJSONObject(0).getJSONArray("images");
+            if (ja.length() > 0) {
+                String url = ja.getJSONObject(0).getString("url");
+                System.out.println(url);
+                ImageView pfpIV = getView().findViewById(R.id.pfpImageView);
+                Picasso.get().load(url).resize(400, 400).into(pfpIV);
+            }
+        } catch (Exception e) {
+
+        }
     }
 }

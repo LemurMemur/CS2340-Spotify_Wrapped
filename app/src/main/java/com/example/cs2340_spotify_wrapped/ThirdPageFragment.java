@@ -8,11 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -53,6 +56,7 @@ public class ThirdPageFragment extends Fragment {
 
         getActivity().runOnUiThread(() -> {
             initTracks();
+            initPicture();
         });
 
     }
@@ -76,6 +80,22 @@ public class ThirdPageFragment extends Fragment {
         } catch (Exception e) {};
     }
 
+
+
+    private void initPicture() {
+        try {
+            JSONArray array = WrapperLoader.currWrapperData.tracks.getJSONArray("items");
+            JSONArray ja = WrapperLoader.currWrapperData.tracks.getJSONArray("items").getJSONObject(0).getJSONObject("album").getJSONArray("images");
+            if (ja.length() > 0) {
+                String url = ja.getJSONObject(0).getString("url");
+                System.out.println(url);
+                ImageView albumCoverIV = getView().findViewById(R.id.albumCoverImageView);
+                Picasso.get().load(url).resize(400, 400).into(albumCoverIV);
+            }
+        } catch (Exception e) {
+
+        }
+    }
 
 
 
