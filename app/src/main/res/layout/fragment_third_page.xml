@@ -18,10 +18,18 @@
         android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.109" />
+
+    <ImageView
+        android:id="@+id/albumCoverImageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/topSong_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <LinearLayout
         android:id="@+id/topSong_list"
@@ -29,9 +37,9 @@
         android:layout_height="400dp"
         android:layout_marginTop="60dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:ignore="MissingConstraints">
 
         <TextView
@@ -41,8 +49,7 @@
             android:fontFamily="@font/montserrat"
             android:text="#1 Song"
             android:textColor="@color/skyPink"
-            android:textSize="40dp"
-            />
+            android:textSize="40dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -51,8 +58,7 @@
             android:fontFamily="@font/montserrat"
             android:text="#2 Song"
             android:textColor="@color/skyPink"
-            android:textSize="40dp"
-            />
+            android:textSize="40dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -61,8 +67,7 @@
             android:fontFamily="@font/montserrat"
             android:text="#3 Song"
             android:textColor="@color/skyPink"
-            android:textSize="40dp"
-            />
+            android:textSize="40dp" />
     </LinearLayout>
 
 
