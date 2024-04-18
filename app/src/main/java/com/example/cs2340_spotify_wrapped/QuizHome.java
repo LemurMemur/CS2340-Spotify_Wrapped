@@ -13,7 +13,7 @@ public class QuizHome extends AppCompatActivity {
 
     private SharedPreferences prefs;
     private TextView highestScoreTextView;
-    private Button startButton;
+    private Button startButton, resetButton;
     private ImageButton homeButton;
 
     @Override
@@ -21,45 +21,43 @@ public class QuizHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_home);
 
-        // Initialize SharedPreferences
         prefs = getSharedPreferences("game_prefs", MODE_PRIVATE);
 
-        // Initialize views
         highestScoreTextView = findViewById(R.id.highestScore);
         startButton = findViewById(R.id.start_btn);
-        homeButton = findViewById(R.id.home_btn); // Initialize the ImageButton
+        resetButton = findViewById(R.id.reset_btn);  // Initialize the reset button
+        homeButton = findViewById(R.id.home_btn);
 
-        // Display the highest score
         updateHighScore();
 
-        // Setup the button to start the quiz
-        startButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(QuizHome.this, QuizMain.class);
-                startActivity(intent);
-            }
+        startButton.setOnClickListener(v -> {
+            Intent intent = new Intent(QuizHome.this, QuizMain.class);
+            startActivity(intent);
         });
 
-        // Set the home button to navigate to Wrapper activity
-        homeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(QuizHome.this, Wrapper.class);
-                startActivity(intent);
-            }
+        resetButton.setOnClickListener(v -> resetHighScore());  // Set up click listener for reset
+
+        homeButton.setOnClickListener(v -> {
+            Intent intent = new Intent(QuizHome.this, Wrapper.class);
+            startActivity(intent);
         });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // Update the high score every time this activity resumes
         updateHighScore();
     }
 
     private void updateHighScore() {
-        int highScore = prefs.getInt("high_score", 0); // Default to 0 if no high score is stored
+        int highScore = prefs.getInt("high_score", 0);
         highestScoreTextView.setText("Highest Score: " + highScore);
+    }
+
+    private void resetHighScore() {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putInt("high_score", 0);  // Reset the highest score to 0
+        editor.apply();
+        updateHighScore();  // Update the displayed score immediately
     }
 }

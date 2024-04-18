@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +62,6 @@ public class QuizMain extends AppCompatActivity {
 
     private void loadQuestions() {
         questionsList = new ArrayList<>();
-        // Updated questions focusing only on identifying album covers
         questionsList.add(new QuizModal("Identify the album cover", "÷ (Divide)", "x (Multiply)", "No.6 Collaborations Project", "÷ (Divide)", "https://example.com/divide.jpg"));
         questionsList.add(new QuizModal("Identify the album cover", "25", "21", "19", "25", "https://example.com/adele25.jpg"));
         questionsList.add(new QuizModal("Identify the album cover", "Reputation", "1989", "Red", "1989", "https://example.com/taylor1989.jpg"));
@@ -74,7 +73,7 @@ public class QuizMain extends AppCompatActivity {
     private void setQuestionScreen() {
         if (questionsAttempted < totalQuestions) {
             currentQuestion = questionsList.get(questionsAttempted);
-            Glide.with(this)
+            Picasso.get()
                     .load(currentQuestion.getImageUrl())
                     .into(quizImageView);
             questionText.setText(currentQuestion.getQuestion());
@@ -90,7 +89,7 @@ public class QuizMain extends AppCompatActivity {
 
     private void checkAnswer(String selectedAnswer) {
         if (selectedAnswer.equals(currentQuestion.getAnswer())) {
-            correctAnswers++;  // Increment correct answers count
+            correctAnswers++;
             // Display some feedback for correct answer
         } else {
             // Display some feedback for wrong answer
@@ -102,12 +101,11 @@ public class QuizMain extends AppCompatActivity {
         }
     }
 
-
     private void finishQuiz() {
         Intent resultIntent = new Intent(QuizMain.this, QuizResult.class);
-        resultIntent.putExtra("SCORE", correctAnswers);  // Assuming you have a correctAnswers variable to track the score
+        resultIntent.putExtra("SCORE", correctAnswers);
         resultIntent.putExtra("TOTAL_QUESTIONS", totalQuestions);
         startActivity(resultIntent);
-        finish();  // End this activity
+        finish();
     }
 }
