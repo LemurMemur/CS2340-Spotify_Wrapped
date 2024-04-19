@@ -1,15 +1,17 @@
 package com.example.cs2340_spotify_wrapped;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -17,6 +19,7 @@ public class TimeFrameSelection extends AppCompatActivity implements AdapterView
 
     private Spinner timeSelectSpinner;
     private static final String[] paths = {"1 Month", "6 Months", "12 Months"};
+    ConstraintLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,11 @@ public class TimeFrameSelection extends AppCompatActivity implements AdapterView
         setContentView(R.layout.activity_time_frame_selection);
         initButtons();
         initTimeSelect();
+        relativeLayout = findViewById(R.id.timeFrame);
+        AnimationDrawable animationDrawable = (AnimationDrawable) relativeLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(2500);
+        animationDrawable.setExitFadeDuration(3000);
+        animationDrawable.start();
     }
 
     void initButtons() {
@@ -36,10 +44,9 @@ public class TimeFrameSelection extends AppCompatActivity implements AdapterView
         });
     }
 
-
     private void initTimeSelect() {
-        timeSelectSpinner = (Spinner)findViewById(R.id.timeSelectSpinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        timeSelectSpinner = (Spinner) findViewById(R.id.timeSelectSpinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 TimeFrameSelection.this,
                 android.R.layout.simple_spinner_item,
                 paths
@@ -50,10 +57,8 @@ public class TimeFrameSelection extends AppCompatActivity implements AdapterView
         timeSelectSpinner.setSelection(WrapperLoader.currentTimeFrame);
         timeSelectSpinner.setVisibility(View.VISIBLE);
     }
-    public void onItemSelected(AdapterView<?> parent, View view,
-                               int pos, long id) {
-        // An item is selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos).
+
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         if (pos != WrapperLoader.currentTimeFrame) {
             WrapperLoader.currentTimeFrame = pos;
         }
@@ -63,6 +68,6 @@ public class TimeFrameSelection extends AppCompatActivity implements AdapterView
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
-        // Another interface callback.
+        // Another interface callback
     }
 }

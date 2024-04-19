@@ -129,6 +129,8 @@ public class Wrapper extends AppCompatActivity {
 
         ImageButton settings = findViewById(R.id.setting);
         settings.setOnClickListener((v) -> {
+            Intent intent = new Intent(getApplicationContext(), Settings.class);
+            startActivity(intent);
         });
         Button game = findViewById(R.id.miniGame_btn);
         game.setOnClickListener((v) -> {
