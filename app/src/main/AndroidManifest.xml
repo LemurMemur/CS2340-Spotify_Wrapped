@@ -57,6 +57,15 @@
             android:name=".UserRegistration"
             android:exported="false" />
         <activity
+            android:name=".QuizMain"
+            android:exported="false" />
+        <activity
+            android:name=".QuizResult"
+            android:exported="false" />
+        <activity
+            android:name=".QuizHome"
+            android:exported="false" />
+        <activity
             android:name=".UserLogin"
             android:exported="false"
             android:label="@string/title_activity_user_login"

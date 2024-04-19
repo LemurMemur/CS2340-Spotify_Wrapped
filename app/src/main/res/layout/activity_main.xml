@@ -39,7 +39,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:text="iWrapper"
             android:textAlignment="center"
-            android:textColor="@color/orangeRed"
+            android:textColor="@color/white"
             android:textSize="50dp"
             android:textStyle="bold" />
 
@@ -72,7 +72,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/montserrat_medium"
             android:gravity="center"
-            android:text="Please authenticate or reauthenticate with spotify."
+            android:text="Connect Your Account"
             android:textColor="@color/white"
             android:textSize="16dp" />
 
@@ -93,7 +93,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/montserrat_medium"
             android:gravity="center"
-            android:text="Once authenticated, click Wrapper to view your personalized spotify wrapped."
+            android:text="Create Your Spotify Wrapped"
             android:textColor="@color/white"
             android:textSize="16dp" />
 
@@ -103,7 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="Wrapper" />
+            android:text="Create Wrapper" />
 
 
     </LinearLayout>

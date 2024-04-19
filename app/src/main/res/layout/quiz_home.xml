@@ -70,6 +70,7 @@
         android:fontFamily="@font/montserrat_bold"
         />
     <TextView
+        android:id="@+id/highestScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/start_btn"
@@ -78,5 +79,15 @@
         android:text="Highest Score:"
         android:textSize="15dp"
         android:textColor="@color/white"/>
+    <Button
+        android:id="@+id/reset_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset Highest Score"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/montserrat_bold"/>
+
 
 </RelativeLayout>

@@ -2,9 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wrapperLoader"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#81FF92"
+    android:background="@drawable/gradient_list"
     tools:context=".WrapperLoader">
 
     <TextView
@@ -12,9 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="320dp"
-        android:text="Generating your Spotify Summary..."
-        android:textSize="24sp"
+        android:text="Generating Summary..."
+        android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:fontFamily="@font/montserrat_bold"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

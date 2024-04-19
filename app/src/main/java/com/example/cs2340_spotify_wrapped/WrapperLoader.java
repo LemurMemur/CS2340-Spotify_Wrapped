@@ -1,8 +1,10 @@
 package com.example.cs2340_spotify_wrapped;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -32,6 +34,7 @@ public class WrapperLoader extends AppCompatActivity {
     public static WrapperData currWrapperData = null;
     public static boolean viewingHistory = false;
     public static boolean gotArtists = false, gotTracks = false;
+    ConstraintLayout relativeLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +48,11 @@ public class WrapperLoader extends AppCompatActivity {
             viewingHistory = true;
             goToSlideshow();
         }
+        relativeLayout = findViewById(R.id.wrapperLoader);
+        AnimationDrawable animationDrawable = (AnimationDrawable) relativeLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(2500);
+        animationDrawable.setExitFadeDuration(3000);
+        animationDrawable.start();
     }
 
     private void retrieveData (int mode) {

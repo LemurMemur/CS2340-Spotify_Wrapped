@@ -50,7 +50,7 @@ public class FourthPageFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         AnimationDrawable animationDrawable = (AnimationDrawable) fourthFragment.getBackground();
-        animationDrawable.setEnterFadeDuration(2500);
+        animationDrawable.setEnterFadeDuration(3000);
         animationDrawable.setExitFadeDuration(3000);
         animationDrawable.start();
 
