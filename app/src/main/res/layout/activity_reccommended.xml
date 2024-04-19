@@ -7,6 +7,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient_list"
     tools:context=".Reccommended">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
     <ImageButton
         android:id="@+id/home"
         android:layout_width="match_parent"
@@ -43,18 +50,19 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="64dp" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Recommended Songs"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.109" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="355dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Recommended Artists and Songs"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.109" />
 
     <ImageView
         android:id="@+id/albumCoverImageView"
@@ -65,16 +73,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <LinearLayout
-        android:id="@+id/recommendationsTextVieww"
-        android:layout_width="300dp"
-        android:layout_height="400dp"
-        android:layout_marginTop="60dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints">
+
 
         <TextView
             android:id="@+id/recommendationsTextView"
@@ -102,9 +101,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
             android:fontFamily="@font/montserrat"
-            
+
             android:textColor="@color/skyPink"
             android:textSize="28dp" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
