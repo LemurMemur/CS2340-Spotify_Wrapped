@@ -139,7 +139,8 @@ public class Wrapper extends AppCompatActivity {
         });
         Button recommendation = findViewById(R.id.recom_btn);
         recommendation.setOnClickListener((v) -> {
-            //TODO add redirect to recommendation page
+            Intent intent = new Intent(getApplicationContext(), Reccommended.class);
+            startActivity(intent);
         });
         Button saveToDatabase = findViewById(R.id.save_wrapper_database);
         if (WrapperLoader.viewingHistory) {
