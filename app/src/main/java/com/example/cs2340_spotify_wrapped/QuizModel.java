@@ -1,10 +1,10 @@
 package com.example.cs2340_spotify_wrapped;
 
-public class QuizModal {
+public class QuizModel {
     private String question, option1, option2, option3, answer, imageUrl;
 
     // Constructor
-    public QuizModal(String question, String option1, String option2, String option3, String answer, String imageUrl) {
+    public QuizModel(String question, String option1, String option2, String option3, String answer, String imageUrl) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;

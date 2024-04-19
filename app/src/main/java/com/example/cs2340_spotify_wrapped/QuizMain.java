@@ -11,14 +11,15 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class QuizMain extends AppCompatActivity {
 
     private TextView questionText, questionAttemptedText;
     private ImageView quizImageView;
     private Button option1Button, option2Button, option3Button;
-    private List<QuizModal> questionsList;
-    private QuizModal currentQuestion;
+    private List<QuizModel> questionsList;
+    private QuizModel currentQuestion;
     private int totalQuestions;
     private int questionsAttempted;
     private int correctAnswers = 0;
@@ -62,20 +63,70 @@ public class QuizMain extends AppCompatActivity {
 
     private void loadQuestions() {
         questionsList = new ArrayList<>();
-        questionsList.add(new QuizModal("Identify the album cover", "÷ (Divide)", "x (Multiply)", "No.6 Collaborations Project", "÷ (Divide)", "https://example.com/divide.jpg"));
-        questionsList.add(new QuizModal("Identify the album cover", "25", "21", "19", "25", "https://example.com/adele25.jpg"));
-        questionsList.add(new QuizModal("Identify the album cover", "Reputation", "1989", "Red", "1989", "https://example.com/taylor1989.jpg"));
-        questionsList.add(new QuizModal("Identify the album cover", "Purpose", "Changes", "Justice", "Purpose", "https://example.com/bieberpurpose.jpg"));
-        questionsList.add(new QuizModal("Identify the album cover", "Starboy", "Beauty Behind the Madness", "After Hours", "Starboy", "https://example.com/starboy.jpg"));
+        for (int i = 0; i < 5 ; ++i) {
+            questionsList.add(getRandomQuestion());
+        }
         totalQuestions = questionsList.size();
+    }
+
+    private QuizModel getRandomQuestion() {
+        Random rand = new Random();
+        String[] options = new String[3]; // 3 random out of top 5
+        int[] indices = new int[3];
+        int correct = rand.nextInt(3);
+        boolean[] include = new boolean[5];
+        for (int i=0, count = 0; count<3; i = (i + 1)%5) {
+            boolean y = rand.nextInt(2) > 0;
+            if (y && !include[i]) {
+                indices[count] = i;
+                include[i] = true;
+                count++;
+            }
+        }
+
+        int mode = rand.nextInt(2);
+        String question = "";
+        String imageUrl = ImageLoader.getImageURL(mode, indices[correct]);
+        if (imageUrl.equals("")) {
+            correct = (correct + 1) % 3;
+            imageUrl = ImageLoader.getImageURL(mode, indices[correct]);
+        } // this is a lazy way to try to make sure the answer has an image that can be used
+        if (imageUrl.equals("")) {
+            correct = (correct + 1) % 3;
+            imageUrl = ImageLoader.getImageURL(mode, indices[correct]);
+        }
+        for (int i=0; i<3; ++i) {
+            try {
+                switch (mode) {
+                    case 0:
+                        System.out.println(WrapperLoader.currWrapperData.artists.getJSONArray("items").getJSONObject(indices[i]));
+                        question = "Identify the artist picture";
+                        options[i] = WrapperLoader.currWrapperData.artists.getJSONArray("items").getJSONObject(indices[i]).getString("name");
+                        break;
+                    case 1:
+                        question = "Identify the album cover";
+                        options[i] = WrapperLoader.currWrapperData.tracks.getJSONArray("items").getJSONObject(indices[i]).getString("name");
+                        break;
+                }
+            } catch (Exception e) {
+                System.out.println("failed to load quiz");
+            }
+        }
+
+        QuizModel ret = new QuizModel(question, options[0], options[1], options[2], options[correct], imageUrl);
+        return ret;
     }
 
     private void setQuestionScreen() {
         if (questionsAttempted < totalQuestions) {
             currentQuestion = questionsList.get(questionsAttempted);
-            Picasso.get()
-                    .load(currentQuestion.getImageUrl())
-                    .into(quizImageView);
+            if (!currentQuestion.getImageUrl().equals("")) {
+                Picasso.get()
+                        .load(currentQuestion.getImageUrl())
+                        .into(quizImageView);
+            } else {
+                quizImageView.setImageResource(0);
+            }
             questionText.setText(currentQuestion.getQuestion());
             option1Button.setText(currentQuestion.getOption1());
             option2Button.setText(currentQuestion.getOption2());

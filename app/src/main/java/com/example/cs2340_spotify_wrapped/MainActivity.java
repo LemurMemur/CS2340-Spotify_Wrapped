@@ -77,13 +77,19 @@ public class MainActivity extends AppCompatActivity {
 
         // Set the click listeners for the buttons
 
+        getToken();
         tokenBtn.setOnClickListener((v) -> {
-            getToken();
+            AuthorizationRequest.Builder builder =
+                    new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI);
+
+            builder.setScopes(new String[]{"user-read-private", "user-read-email", "user-follow-read", "user-top-read"});
+            builder.setShowDialog(true);
+            AuthorizationRequest request = builder.build();
+            AuthorizationClient.openLoginInBrowser(this, request);
         });
 
         goToWrapperButton.setOnClickListener((v) -> {
-            getToken();
-            // goToWrapper();
+            goToWrapper();
         });
 
         activity_main = findViewById(R.id.activity_main);
@@ -147,7 +153,6 @@ public class MainActivity extends AppCompatActivity {
                 case TOKEN:
                     // Handle successful response
                     mAccessToken = response.getAccessToken();
-                    goToWrapper();
                     break;
 
                 // Auth flow returned an error
