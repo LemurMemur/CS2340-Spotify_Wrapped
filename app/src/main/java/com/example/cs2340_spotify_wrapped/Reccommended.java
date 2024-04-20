@@ -1,12 +1,15 @@
 package com.example.cs2340_spotify_wrapped;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -16,6 +19,8 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,6 +42,9 @@ public class Reccommended extends AppCompatActivity {
     private TextView recommendationsTextView;
     private TextView textview1;
     private TextView textview2;
+    private ImageView pfpImageView;
+    private ImageView pfpImageView1;
+    private ImageView pfpImageView2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +52,11 @@ public class Reccommended extends AppCompatActivity {
         setContentView(R.layout.activity_reccommended);
 
         recommendationsTextView = findViewById(R.id.recommendationsTextView);
+        textview1 = findViewById(R.id.textView1);
+        textview2 = findViewById(R.id.textView2);
+        pfpImageView = findViewById(R.id.pfpImageView);
+        pfpImageView1 = findViewById(R.id.pfpImageView1);
+        pfpImageView2 = findViewById(R.id.pfpImageView2);
 
         new FetchRecommendationsTask().execute();
         main = findViewById(R.id.main);
@@ -89,6 +102,38 @@ public class Reccommended extends AppCompatActivity {
                 return null;
             }
         }
+        private void initPicture(String imageUrl, int position) {
+            new AsyncTask<String, Void, Bitmap>() {
+                @Override
+                protected Bitmap doInBackground(String... strings) {
+                    String url = strings[0];
+                    try {
+                        InputStream inputStream = new URL(url).openStream();
+                        return BitmapFactory.decodeStream(inputStream);
+                    } catch (IOException e) {
+                        Log.e(TAG, "Error loading image from URL", e);
+                        return null;
+                    }
+                }
+
+                @Override
+                protected void onPostExecute(Bitmap bitmap) {
+                    super.onPostExecute(bitmap);
+                    if (bitmap != null) {
+                        // Set the bitmap to the respective ImageView
+                        if (position == 0) {
+                            pfpImageView.setImageBitmap(bitmap);
+                        } else if (position == 1) {
+                            pfpImageView1.setImageBitmap(bitmap);
+                        } else if (position == 2) {
+                            pfpImageView2.setImageBitmap(bitmap);
+                        }
+                    } else {
+                        // Handle error loading image
+                    }
+                }
+            }.execute(imageUrl);
+        }
 
         @Override
         protected void onPostExecute(String response) {
@@ -103,29 +148,34 @@ public class Reccommended extends AppCompatActivity {
                     StringBuilder recommendations2 = new StringBuilder();
                     for (int i = 0; i < 3; i++) {
                         JSONObject trackObject = tracksArray.getJSONObject(i);
+                        String imageUrl = trackObject.getJSONObject("album").getJSONArray("images").getJSONObject(0).getString("url");
+                        initPicture(imageUrl, i);
                         String trackName = trackObject.getString("name");
                         String artistName = trackObject.getJSONArray("artists").getJSONObject(0).getString("name");
-                        recommendations.append(trackName).append(" by ").append(artistName).append("\n").append("\n");
-//
-//                        if (i == 0) {
-//                            recommendations.append(trackName).append(" by ").append(artistName).append("\n");
-//                        }
-//                        if (i == 1) {
-//                            recommendations1.append(trackName).append(" by ").append(artistName).append("\n");
-//                        }
-//                        if (i == 2) {
-//                            recommendations2.append(trackName).append(" by ").append(artistName).append("\n");
-//                        }
+//                        recommendations.append(trackName).append(" by ").append(artistName).append("\n").append("\n");
+
+                        if (i == 0) {
+                            recommendations.append(trackName).append(" by ").append(artistName).append("\n");
+                        }
+                        if (i == 1) {
+                            recommendations1.append(trackName).append(" by ").append(artistName).append("\n");
+                        }
+                        if (i == 2) {
+                            recommendations2.append(trackName).append(" by ").append(artistName).append("\n");
+                        }
+
                     }
 
                     recommendationsTextView.setText(recommendations.toString());
-//                    textview1.setText(recommendations1.toString());
-//                    textview2.setText(recommendations2.toString());
+                    textview1.setText(recommendations1.toString());
+                    textview2.setText(recommendations2.toString());
                 } catch (JSONException e) {
                     Log.e(TAG, "Error parsing JSON response", e);
                 }
             } else {
                 recommendationsTextView.setText("Error fetching recommendations");
+                textview1.setText("Error fetching recommendations");
+                textview2.setText("Error fetching recommendations");
             }
         }
     }
