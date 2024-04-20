@@ -145,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
                     // Handle other cases
             }
         }
-
     }
 
     /**

@@ -22,7 +22,7 @@ import java.util.HashMap;
 public class FourthPageFragment extends Fragment {
 
     private ConstraintLayout fourthFragment;
-    private Button wrapperSummaryButton;
+    //private Button wrapperSummaryButton;
 
     public FourthPageFragment() {
         // Required empty public constructor
@@ -42,7 +42,7 @@ public class FourthPageFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fourth_page, container, false);
         fourthFragment = view.findViewById(R.id.fourthFragment);
-        wrapperSummaryButton = view.findViewById(R.id.wrapper_summary);
+        //wrapperSummaryButton = view.findViewById(R.id.wrapper_summary);
         return view;
     }
 
@@ -55,6 +55,7 @@ public class FourthPageFragment extends Fragment {
         animationDrawable.start();
 
         // Set up the button click listener to navigate to Wrapper activity
+        /*
         wrapperSummaryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +63,7 @@ public class FourthPageFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        */
         getActivity().runOnUiThread(() -> {
             initGenre();
         });

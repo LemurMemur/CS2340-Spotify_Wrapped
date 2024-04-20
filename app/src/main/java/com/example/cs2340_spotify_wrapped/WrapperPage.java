@@ -29,6 +29,5 @@ public class WrapperPage extends AppCompatActivity {
 
     }
 
-    private void initTracks() {}
 
 }

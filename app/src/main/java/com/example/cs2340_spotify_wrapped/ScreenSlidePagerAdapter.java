@@ -1,12 +1,14 @@
 package com.example.cs2340_spotify_wrapped;
 
+import android.content.Intent;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 public class ScreenSlidePagerAdapter extends FragmentStateAdapter {
-    private static final int NUM_PAGES = 4; // Increase as needed
+    private static final int NUM_PAGES = 5; // Increase as needed
 
     public ScreenSlidePagerAdapter(FragmentActivity fa) {
         super(fa);
@@ -24,6 +26,8 @@ public class ScreenSlidePagerAdapter extends FragmentStateAdapter {
                 return new ThirdPageFragment();
             case 3:
                 return new FourthPageFragment();
+            case 4:
+                return new SlideshowToSummary();
             default:
                 return new FirstPageFragment(); // Default to existing page or handle uniquely
         }
