@@ -46,7 +46,7 @@ public class WrapperLoader extends AppCompatActivity {
             retrieveData(1); // will auto call goToSlideshow on the async call
         } else {
             viewingHistory = true;
-            goToSlideshow();
+            goToSummary();
         }
         relativeLayout = findViewById(R.id.wrapperLoader);
         AnimationDrawable animationDrawable = (AnimationDrawable) relativeLayout.getBackground();
@@ -113,6 +113,11 @@ public class WrapperLoader extends AppCompatActivity {
     }
     private void goToSlideshow() {
         Intent intent = new Intent(getApplicationContext(), WrapperPage.class);
+        startActivity(intent);
+        finish();
+    }
+    private void goToSummary() {
+        Intent intent = new Intent(getApplicationContext(), Wrapper.class);
         startActivity(intent);
         finish();
     }

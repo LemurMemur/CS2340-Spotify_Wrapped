@@ -116,11 +116,6 @@ public class Wrapper extends AppCompatActivity {
     }
 
     private void initButtons() {
-        ImageButton history = findViewById(R.id.history);
-        history.setOnClickListener((v) -> {
-            Intent intent = new Intent(getApplicationContext(), History.class);
-            startActivity(intent);
-        });
         ImageButton home = findViewById(R.id.home);
         home.setOnClickListener((v) -> {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -148,9 +143,14 @@ public class Wrapper extends AppCompatActivity {
         } else {
             saveToDatabase.setOnClickListener((v) -> {
                 spotifyFirebaseManager.addWrapperData(WrapperLoader.currWrapperData);
-                Toast.makeText(Wrapper.this, "Summary saved to cloud", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Wrapper.this, "Summary saved.\n Click view history to view past Summaries.", Toast.LENGTH_LONG).show();
             });
         }
+        Button history = findViewById(R.id.history);
+        history.setOnClickListener((v) -> {
+            Intent intent = new Intent(getApplicationContext(), History.class);
+            startActivity(intent);
+        });
 
     }
 
