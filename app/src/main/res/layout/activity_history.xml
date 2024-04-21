@@ -6,48 +6,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".History"
-    android:background="@color/violetBlue">
+    android:background="#1DB954">
 
-
-    <Button
-        android:id="@+id/timeTravelButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
-        android:backgroundTint="@color/skyBlue"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Revisit"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
-        android:id="@+id/settingsGoBack"
+        android:id="@+id/historyGoBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="32dp"
-        android:background="#00000000"
+        android:background="#99000000"
         android:src="@drawable/back_button"
-        app:layout_constraintEnd_toStartOf="@+id/historySelectSpinner"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/historyListView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <Spinner
-        android:id="@+id/historySelectSpinner"
-        android:layout_width="200dp"
-        android:layout_height="0dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:spinnerMode="dropdown"
-        android:textColor="@color/white"
-        android:textSize="25dp"
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#99000000"
+        android:fontFamily="@font/montserrat_medium"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Saved Wrappers"
+        android:textColor="@color/skyBlue"
+        android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/historyListView"
+        android:layout_width="match_parent"
+        android:layout_height="640dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="1dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
