@@ -5,7 +5,7 @@
     android:id="@+id/relativelayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp"
+    android:padding="8dp"
     android:background="@drawable/gradient_list">
     <!--this create horizontal line-->
 
@@ -15,12 +15,6 @@
         android:layout_height="2dp"
         android:background="@color/skyPink"
         android:layout_marginTop="70dp"/>
-    <!--this create center point-->
-    <View
-        android:id="@+id/centerGuide1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_centerInParent="true"/>
 
     <TextView
         android:id="@+id/wrapper_title"
@@ -52,52 +46,49 @@
         android:background="#00000000"
         android:src="@drawable/home" />
 
-    <ImageButton
-        android:id="@+id/history"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/home"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="50dp"
-        android:background="#00000000"
-        android:src="@drawable/history_icon" />
     <!--top artist list-->
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="123dp"
         android:layout_height="145dp"
-        android:layout_alignRight="@id/topArtist_list"
-        android:layout_alignBottom="@id/horizontal_line"
-        android:layout_marginRight="-59dp"
-        android:layout_marginBottom="-219dp"
+        android:layout_alignTop="@id/horizontal_line"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
         android:rotation="12"
         android:src="@drawable/music" />
 
     <TextView
         android:id="@+id/topArtist_text"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/horizontal_line"
         android:text="Top Artists"
         android:textColor="@color/skyBlue"
         android:fontFamily="@font/montserrat_medium"
         android:textSize="30dp"
-        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="20dp"
-        />
+        android:background="#99000000"
+        android:padding="5dp"/>
     <LinearLayout
         android:id="@+id/topArtist_list"
-        android:layout_width="300dp"
+        android:layout_width="180dp"
         android:layout_height="130dp"
         android:layout_below="@+id/topArtist_text"
         android:layout_marginLeft="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#99000000"
+        android:padding="5dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:text="#1 Artist"
+            android:gravity="center"
             android:textColor="@color/skyPink"
             android:textSize="25dp"/>
         <TextView
@@ -105,6 +96,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:text="#2 Artist"
+            android:gravity="center"
             android:textColor="@color/skyPink"
             android:textSize="25dp"/>
         <TextView
@@ -112,6 +104,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:text="#3 Artist"
+            android:gravity="center"
             android:textColor="@color/skyPink"
             android:textSize="25dp"/>
     </LinearLayout>
@@ -119,29 +112,34 @@
     <!--top song list-->
     <TextView
         android:id="@+id/topSong_text"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/topArtist_list"
         android:text="Top Songs"
+        android:gravity="center"
         android:textColor="@color/skyBlue"
         android:fontFamily="@font/montserrat_medium"
         android:textSize="30dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        />
+        android:background="#99000000"
+        android:padding="5dp"/>
     <LinearLayout
         android:id="@+id/topSong_list"
-        android:layout_width="300dp"
+        android:layout_width="180dp"
         android:layout_height="130dp"
         android:layout_below="@+id/topSong_text"
         android:layout_marginLeft="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#99000000"
+        android:padding="5dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:text="#1 Song"
+            android:gravity="center"
             android:textColor="@color/skyPink"
             android:textSize="25dp"/>
         <TextView
@@ -149,6 +147,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:text="#2 Song"
+            android:gravity="center"
             android:textColor="@color/skyPink"
             android:textSize="25dp"/>
         <TextView
@@ -156,6 +155,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
             android:text="#3 Song"
+            android:gravity="center"
             android:textColor="@color/skyPink"
             android:textSize="25dp"/>
     </LinearLayout>
@@ -163,75 +163,94 @@
 
     <TextView
         android:id="@+id/topGenre_text"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/topSong_list"
-        android:layout_alignLeft="@+id/centerGuide1"
-        android:layout_marginLeft="-170dp"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Top \nGenre"
-        android:textColor="@color/white"
-        android:textSize="25dp" />
+        android:text="Top Genre"
+        android:gravity="center"
+        android:textColor="@color/skyBlue"
+        android:fontFamily="@font/montserrat_medium"
+        android:textSize="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:background="#99000000"
+        android:padding="5dp"/>
 
     <TextView
         android:id="@+id/topGenre"
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/topGenre_text"
-        android:layout_alignLeft="@+id/centerGuide1"
-        android:layout_marginLeft="-168dp"
-        android:layout_marginTop="11dp"
         android:text="genre"
+        android:gravity="center"
         android:textColor="@color/skyPink"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:layout_marginLeft="20dp"
+        android:background="#99000000"
+        android:padding="5dp"/>
+
+    <Button
+        android:id="@+id/recom_btn"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/skyBlue"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Recommend"
+        android:textColor="@color/black"
+        android:textSize="14dp" />
 
     <Button
         android:id="@+id/miniGame_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/topSong_list"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="141dp"
-        android:layout_marginEnd="36dp"
-        android:layout_toStartOf="@+id/recom_btn"
+        android:layout_below="@+id/recom_btn"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:backgroundTint="@color/skyBlue"
         android:fontFamily="@font/montserrat_bold"
         android:text="Mini Game"
         android:textColor="@color/black"
-        android:textSize="15dp" />
-
-    <Button
-        android:id="@+id/recom_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/topGenre"
-        android:layout_alignLeft="@id/centerGuide1"
-
-        android:text="Recommendation"
-        android:backgroundTint="@color/skyBlue"
-        android:textColor="@color/black"
-        android:fontFamily="@font/montserrat_bold"
-        android:textSize="13dp"
-        android:layout_marginTop="20dp"
-        />
+        android:textSize="14dp" />
 
     <Button
         android:id="@+id/save_wrapper"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/setting"
-        android:layout_marginTop="20dp"
-        android:layout_alignStart="@id/home"
-        android:text="Save Image" />
+        android:layout_below="@+id/miniGame_btn"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Save as Image"
+        android:textSize="14dp" />
 
     <Button
         android:id="@+id/save_wrapper_database"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/miniGame_btn"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:text="Save History" />
+        android:layout_below="@+id/save_wrapper"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Save to History"
+        android:textSize="14dp" />
+
+
+    <Button
+        android:id="@+id/history"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/save_wrapper_database"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="View History"
+        android:textSize="14dp" />
 </RelativeLayout>

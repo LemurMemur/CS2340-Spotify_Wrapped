@@ -71,25 +71,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        // Initialize the buttons
-        Button tokenBtn = (Button) findViewById(R.id.token_btn);
-        Button goToWrapperButton = (Button) findViewById(R.id.wrapperButton);
-
-        // Set the click listeners for the buttons
 
         getToken();
-        tokenBtn.setOnClickListener((v) -> {
-            AuthorizationRequest.Builder builder =
-                    new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI);
 
-            builder.setScopes(new String[]{"user-read-private", "user-read-email", "user-follow-read", "user-top-read"});
-            builder.setShowDialog(true);
-            AuthorizationRequest request = builder.build();
-            AuthorizationClient.openLoginInBrowser(this, request);
-        });
-
+        Button goToWrapperButton = (Button) findViewById(R.id.wrapperButton);
         goToWrapperButton.setOnClickListener((v) -> {
             goToWrapper();
+        });
+        Button goToHistoryButton = (Button) findViewById(R.id.historyButton);
+        goToHistoryButton.setOnClickListener((v) -> {
+            goToHistory();
         });
 
         activity_main = findViewById(R.id.activity_main);
@@ -107,17 +98,8 @@ public class MainActivity extends AppCompatActivity {
      * https://developer.spotify.com/documentation/general/guides/authorization-guide/
      */
     public void getToken() {
-        /*
-        //final AuthorizationRequest request = getAuthenticationRequest(AuthorizationResponse.Type.TOKEN);
-        final AuthorizationRequest request = new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI)
-                .setScopes(new String[]{"user-read-private"})
-                .build();
-        //AuthorizationClient.openLoginActivity(MainActivity.this, AUTH_TOKEN_REQUEST_CODE, request);
-        AuthorizationClient.openLoginInBrowser(this, request);
-*/
         AuthorizationRequest.Builder builder =
                 new AuthorizationRequest.Builder(CLIENT_ID, AuthorizationResponse.Type.TOKEN, REDIRECT_URI);
-
         builder.setScopes(new String[]{"user-read-private", "user-read-email", "user-follow-read", "user-top-read"});
         //builder.setShowDialog(true);
         AuthorizationRequest request = builder.build();
@@ -136,6 +118,10 @@ public class MainActivity extends AppCompatActivity {
         //WrapperLoader.currWrapperData = null;
         //Intent intent = new Intent(getApplicationContext(), WrapperLoader.class);
         Intent intent = new Intent(MainActivity.this, TimeFrameSelection.class);
+        startActivity(intent);
+    }
+    private void goToHistory() {
+        Intent intent = new Intent(MainActivity.this, History.class);
         startActivity(intent);
     }
 
@@ -165,7 +151,6 @@ public class MainActivity extends AppCompatActivity {
                     // Handle other cases
             }
         }
-
     }
 
     /**

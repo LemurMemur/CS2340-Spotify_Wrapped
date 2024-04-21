@@ -13,43 +13,50 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/montserrat_bold"
+        android:fontFamily="@font/montserrat"
         android:text="Your Top Artists"
         android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.109" />
+        app:layout_constraintVertical_bias="0.109"
+        android:background="#33FFFFFF"
+        android:padding="10dp"/>
 
     <ImageView
         android:id="@+id/pfpImageView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toTopOf="@+id/topArtist_list"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="#1DB954"
+        android:padding="5dp"/>
 
     <LinearLayout
         android:id="@+id/topArtist_list"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_marginTop="60dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        android:background="#99000000">
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
             android:layout_marginBottom="50dp"
             android:fontFamily="@font/montserrat"
             android:text="#1 Artist"
             android:textColor="@color/skyPink"
+            android:gravity="center"
             android:textSize="40dp" />
 
         <TextView
@@ -59,6 +66,7 @@
             android:fontFamily="@font/montserrat"
             android:text="#2 Artist"
             android:textColor="@color/skyPink"
+            android:gravity="center"
             android:textSize="40dp" />
 
         <TextView
@@ -68,6 +76,7 @@
             android:fontFamily="@font/montserrat"
             android:text="#3 Artist"
             android:textColor="@color/skyPink"
+            android:gravity="center"
             android:textSize="40dp" />
     </LinearLayout>
 

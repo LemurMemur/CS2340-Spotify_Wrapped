@@ -27,7 +27,9 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.Locale;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -36,18 +38,11 @@ import okhttp3.Response;
 
 public class Wrapper extends AppCompatActivity {
 
-    private String[] urls = {
-            "https://api.spotify.com/v1/me/top/artists?limit=5",
-            "https://api.spotify.com/v1/me/top/tracks?limit=5"
-    };
-    private String[] timeFrames = {
-            "&time_range=short_term",
-            "&time_range=medium_term",
-            "&time_range=long_term"
-    };
+
     private SpotifyFirebaseManager spotifyFirebaseManager;
 
     //public static WrapperData currWrapperData = null;
+    int[] numMonths = {1, 6, 12};
 
     RelativeLayout relativeLayout;
 
@@ -116,11 +111,6 @@ public class Wrapper extends AppCompatActivity {
     }
 
     private void initButtons() {
-        ImageButton history = findViewById(R.id.history);
-        history.setOnClickListener((v) -> {
-            Intent intent = new Intent(getApplicationContext(), History.class);
-            startActivity(intent);
-        });
         ImageButton home = findViewById(R.id.home);
         home.setOnClickListener((v) -> {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -147,10 +137,14 @@ public class Wrapper extends AppCompatActivity {
             saveToDatabase.setVisibility(View.GONE);
         } else {
             saveToDatabase.setOnClickListener((v) -> {
-                spotifyFirebaseManager.addWrapperData(WrapperLoader.currWrapperData);
-                Toast.makeText(Wrapper.this, "Summary saved to cloud", Toast.LENGTH_SHORT).show();
+                saveDataToFirebase();
             });
         }
+        Button history = findViewById(R.id.history);
+        history.setOnClickListener((v) -> {
+            Intent intent = new Intent(getApplicationContext(), History.class);
+            startActivity(intent);
+        });
 
     }
 
@@ -224,5 +218,12 @@ public class Wrapper extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    private void saveDataToFirebase() {
+        spotifyFirebaseManager.addWrapperData(WrapperLoader.currWrapperData);
+        LocalDate end = LocalDate.now();
+        LocalDate start = end.minusMonths(numMonths[WrapperLoader.currentTimeFrame]);
+        spotifyFirebaseManager.addDates(start, end);
+        Toast.makeText(Wrapper.this, "Summary saved.\n Click view history to view past Summaries.", Toast.LENGTH_LONG).show();
     }
 }
