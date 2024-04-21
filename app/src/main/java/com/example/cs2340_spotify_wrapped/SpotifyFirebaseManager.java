@@ -12,6 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONObject;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -49,6 +50,17 @@ public class SpotifyFirebaseManager {
             mDatabase.child("tracks").child(trackId).setValue(tracks.toString());
         }
     }
+    public void addDates(LocalDate start, LocalDate end) {
+        // Similar to the addArtist method, generate a unique key for each new track
+        String value = start.toString() + " to " + end.toString();
+        String stringId = mDatabase.child("dates").push().getKey();
+        if (stringId != null) {
+            // Set the track JSONObject as a child of 'tracks' node using the unique key
+            mDatabase.child("dates").child(stringId).setValue(value);
+        }
+    }
+
+
 
     /**public static void addData(JSONObject artist, JSONObject track) {
         Date today = new Date();

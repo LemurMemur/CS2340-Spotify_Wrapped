@@ -39,14 +39,18 @@ import java.util.List;
 public class History extends AppCompatActivity {
 
     ArrayList<WrapperData> history;
+    ArrayList<String> dates;
     //WrapperData returnData;
-    boolean gotArtists = false, gotTracks = false;
+    boolean gotArtists = false, gotTracks = false, gotDates = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+        gotArtists = false;
+        gotTracks = false;
+        gotDates = false;
         initHistory();
     }
 
@@ -64,9 +68,11 @@ public class History extends AppCompatActivity {
 
     private void initHistory() {
         history = new ArrayList<>();
+        dates = new ArrayList<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference artistsRef = database.getReference("artists");
         DatabaseReference tracksRef = database.getReference("tracks");
+        DatabaseReference datesRef = database.getReference("dates");
 
         tracksRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -87,11 +93,7 @@ public class History extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-                if (gotTracks && gotArtists) {
-                    initHistoryList();
-                    initButtons();
-                    initListItems();
-                }
+                continueInit();
             }
 
             @Override
@@ -119,11 +121,7 @@ public class History extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-                if (gotTracks && gotArtists) {
-                    initHistoryList();
-                    initButtons();
-                    initListItems();
-                }
+                continueInit();
             }
 
             @Override
@@ -131,14 +129,47 @@ public class History extends AppCompatActivity {
                 Toast.makeText(History.this, "Failed",Toast.LENGTH_SHORT).show();
             }
         });
+        datesRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                int i = 0;
+                gotDates = true;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String date = snapshot.getValue(String.class);
+
+                    if (i >= dates.size()) {
+                        dates.add("");
+                    }
+                    dates.set(i, date);
+                    ++i;
+
+                }
+                continueInit();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(History.this, "Failed",Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
     }
+
+    private void continueInit() {
+        if (gotTracks && gotArtists && gotDates) {
+            initHistoryList();
+            initButtons();
+            initListItems();
+        }
+    }
+
 
     private void initHistoryList() {
         ListView listView = (ListView) findViewById(R.id.historyListView);
         String[] lst = new String[history.size()];
         for (int i = 0; i < lst.length; ++i) {
-            lst[i] = "" + i; // TODO change this
+            lst[i] = dates.get(i);
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 History.this,
