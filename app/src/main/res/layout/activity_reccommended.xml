@@ -22,7 +22,7 @@
         android:layout_marginTop="22dp"
         android:layout_marginRight="-350dp"
         android:background="#00000000"
-        android:src="@drawable/home" />
+        android:src="@drawable/back_button" />
     <TextView
         android:id="@+id/appName"
         android:layout_width="337dp"
