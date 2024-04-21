@@ -30,7 +30,7 @@
         <TextView
             android:id="@+id/appName"
             android:layout_width="337dp"
-            android:layout_height="wrap_content"
+            android:layout_height="85dp"
             android:layout_below="@+id/appIcon"
             android:layout_centerHorizontal="true"
 
@@ -39,7 +39,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:text="iWrapper"
             android:textAlignment="center"
-            android:textColor="@color/white"
+            android:textColor="@color/orangeRed"
             android:textSize="50dp"
             android:textStyle="bold" />
 
