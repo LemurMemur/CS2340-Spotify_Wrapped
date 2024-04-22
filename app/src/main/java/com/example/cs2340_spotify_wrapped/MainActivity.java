@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), UserLogin.class);
             startActivity(intent);
             finish();
+        } else {
+            getToken();
         }
 
         settings = findViewById(R.id.setting);
@@ -72,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        getToken();
 
         Button goToWrapperButton = (Button) findViewById(R.id.wrapperButton);
         goToWrapperButton.setOnClickListener((v) -> {
