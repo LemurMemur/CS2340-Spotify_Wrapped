@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
      */
 
     private void goToWrapper() {
-        //WrapperLoader.currWrapperData = null;
+        WrapperLoader.currWrapperData = null;
         //Intent intent = new Intent(getApplicationContext(), WrapperLoader.class);
         Intent intent = new Intent(MainActivity.this, TimeFrameSelection.class);
         startActivity(intent);
