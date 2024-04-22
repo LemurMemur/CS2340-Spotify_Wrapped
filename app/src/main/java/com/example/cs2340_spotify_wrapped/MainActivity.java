@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
             finish();
         } else {
             getToken();
+            SpotifyFirebaseManager.GetUserID();
+
         }
 
         settings = findViewById(R.id.setting);
