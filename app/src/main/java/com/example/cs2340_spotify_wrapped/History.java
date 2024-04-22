@@ -69,10 +69,10 @@ public class History extends AppCompatActivity {
     private void initHistory() {
         history = new ArrayList<>();
         dates = new ArrayList<>();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference artistsRef = database.getReference("artists");
-        DatabaseReference tracksRef = database.getReference("tracks");
-        DatabaseReference datesRef = database.getReference("dates");
+        DatabaseReference userDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(SpotifyFirebaseManager.GetUserID());
+        DatabaseReference artistsRef = userDatabase.child("artists");
+        DatabaseReference tracksRef = userDatabase.child("tracks");
+        DatabaseReference datesRef = userDatabase.child("dates");
 
         tracksRef.addValueEventListener(new ValueEventListener() {
             @Override

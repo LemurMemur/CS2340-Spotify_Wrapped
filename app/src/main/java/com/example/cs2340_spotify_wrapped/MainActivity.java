@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
             finish();
         } else {
             getToken();
+            SpotifyFirebaseManager.GetUserID();
+
         }
 
         settings = findViewById(R.id.setting);
@@ -118,8 +120,9 @@ public class MainActivity extends AppCompatActivity {
     private void goToWrapper() {
         WrapperLoader.currWrapperData = null;
         //Intent intent = new Intent(getApplicationContext(), WrapperLoader.class);
-        Intent intent = new Intent(MainActivity.this, TimeFrameSelection.class);
+        Intent intent = new Intent(getApplicationContext(), TimeFrameSelection.class);
         startActivity(intent);
+        finish();
     }
     private void goToHistory() {
         Intent intent = new Intent(MainActivity.this, History.class);

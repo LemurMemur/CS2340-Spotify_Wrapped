@@ -114,7 +114,9 @@ public class Wrapper extends AppCompatActivity {
         ImageButton home = findViewById(R.id.home);
         home.setOnClickListener((v) -> {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            //Intent intent = new Intent(getApplicationContext(), TimeFrameSelection.class);
             startActivity(intent);
+            finish();
         });
 
         ImageButton settings = findViewById(R.id.setting);

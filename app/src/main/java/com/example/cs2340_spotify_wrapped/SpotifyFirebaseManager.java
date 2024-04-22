@@ -4,11 +4,13 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.auth.User;
 
 import org.json.JSONObject;
 
@@ -21,10 +23,18 @@ public class SpotifyFirebaseManager {
     private static final String TAG = "FirebaseDatabase";
     private static DatabaseReference mDatabase;
 
+    private static String UserID = "";
 
     public SpotifyFirebaseManager() {
         // Initialize Firebase Database
         mDatabase = FirebaseDatabase.getInstance().getReference();
+    }
+
+    public static String GetUserID() {
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        UserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference test = mDatabase.child("users").child(UserID);
+        return UserID;
     }
 
     public void addWrapperData(WrapperData wd) {
@@ -35,28 +45,28 @@ public class SpotifyFirebaseManager {
     public void addArtists(JSONObject artists) {
         // Assuming 'artist' is a well-structured JSONObject containing relevant data
         // Generate a unique key for each new artist
-        String artistId = mDatabase.child("artists").push().getKey();
+        String artistId = mDatabase.child("users").child(UserID).child("artists").push().getKey();
         if (artistId != null) {
             // Set the artist JSONObject as a child of 'artists' node using the unique key
-            mDatabase.child("artists").child(artistId).setValue(artists.toString());
+            mDatabase.child("users").child(UserID).child("artists").child(artistId).setValue(artists.toString());
         }
     }
 
     public void addTracks(JSONObject tracks) {
         // Similar to the addArtist method, generate a unique key for each new track
-        String trackId = mDatabase.child("tracks").push().getKey();
+        String trackId = mDatabase.child("users").child(UserID).child("tracks").push().getKey();
         if (trackId != null) {
             // Set the track JSONObject as a child of 'tracks' node using the unique key
-            mDatabase.child("tracks").child(trackId).setValue(tracks.toString());
+            mDatabase.child("users").child(UserID).child("tracks").child(trackId).setValue(tracks.toString());
         }
     }
     public void addDates(LocalDate start, LocalDate end) {
         // Similar to the addArtist method, generate a unique key for each new track
         String value = start.toString() + " to " + end.toString();
-        String stringId = mDatabase.child("dates").push().getKey();
+        String stringId = mDatabase.child("users").child(UserID).child("dates").push().getKey();
         if (stringId != null) {
             // Set the track JSONObject as a child of 'tracks' node using the unique key
-            mDatabase.child("dates").child(stringId).setValue(value);
+            mDatabase.child("users").child(UserID).child("dates").child(stringId).setValue(value);
         }
     }
 

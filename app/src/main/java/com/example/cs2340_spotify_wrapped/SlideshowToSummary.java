@@ -36,12 +36,15 @@ public class SlideshowToSummary extends Fragment {
         super.onCreate(savedInstanceState);
         Intent intent = new Intent(getActivity(), Wrapper.class);
         startActivity(intent);
+        getActivity().finish();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        //Intent intent = new Intent(getActivity(), Wrapper.class);
+        //startActivity(intent);
         return inflater.inflate(R.layout.fragment_slideshow_to_summary, container, false);
     }
 }
